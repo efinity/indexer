@@ -1,12 +1,9 @@
 import { u8aToHex } from '@polkadot/util'
 import { Account, Balance, Listing, ListingStatus } from '../../model'
-import { BlockHandlerContext, CallHandlerContext, CommonContext, EventHandlerContext } from '../types/contexts'
+import { CommonContext } from '../types/contexts'
 import { encodeId, isAddressSS58 } from '../../common/tools'
 
-export async function getOrCreateAccount(
-    ctx: EventHandlerContext | CallHandlerContext | BlockHandlerContext | CommonContext,
-    publicKey: Uint8Array
-): Promise<Account> {
+export async function getOrCreateAccount(ctx: CommonContext, publicKey: Uint8Array): Promise<Account> {
     const pkHex = u8aToHex(publicKey)
     let account = await ctx.store.findOneBy(Account, {
         id: pkHex,
@@ -25,7 +22,7 @@ export async function getOrCreateAccount(
             }),
             nonce: 0,
         })
-        await ctx.store.insert(Account, account as any)
+        await ctx.store.insert(account)
     }
 
     return account

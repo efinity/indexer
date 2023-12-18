@@ -1,57 +1,42 @@
-import { SubstrateBlock } from '@subsquid/substrate-processor'
-import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
-import { u8aToHex } from '@polkadot/util'
+import { BlockHeader } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
-import { BalancesTransferEvent } from '../../../types/generated/events'
+import { balances } from '../../../types/generated/events'
 import { BalancesTransfer, Event as EventModel, Extrinsic } from '../../../model'
-import { Event } from '../../../types/generated/support'
-import { CommonContext } from '../../types/contexts'
+import { CommonContext, Event } from '../../types/contexts'
 import { Sns } from '../../../common/sns'
 
-interface EventData {
-    from: Uint8Array
-    to: Uint8Array
-    amount: bigint
-}
-
-function getEventData(ctx: CommonContext, event: Event): EventData {
-    const data = new BalancesTransferEvent(ctx, event)
-
-    if (data.isMatrixEnjinV603) {
-        const { from, to, amount } = data.asMatrixEnjinV603
+function getEventData(ctx: CommonContext, event: Event) {
+    if (balances.transfer.matrixEnjinV603.is(event)) {
+        const { from, to, amount } = balances.transfer.matrixEnjinV603.decode(event)
         return { from, to, amount }
     }
 
-    throw new UnknownVersionError(data.constructor.name)
+    throw new UnknownVersionError(balances.transfer.name)
 }
 
-export async function transfer(
-    ctx: CommonContext,
-    block: SubstrateBlock,
-    item: EventItem<'Balances.Transfer', { event: { args: true; extrinsic: true } }>
-): Promise<EventModel | undefined> {
-    const eventData = getEventData(ctx, item.event)
+export async function transfer(ctx: CommonContext, block: BlockHeader, item: Event): Promise<EventModel | undefined> {
+    const eventData = getEventData(ctx, item)
     if (!eventData) return undefined
 
-    if (item.event.extrinsic) {
+    if (item.extrinsic) {
         await Sns.getInstance().send({
-            id: item.event.id,
-            name: item.event.name,
+            id: item.id,
+            name: item.name,
             body: {
-                from: u8aToHex(eventData.from),
-                to: u8aToHex(eventData.to),
+                from: eventData.from,
+                to: eventData.to,
                 amount: eventData.amount,
-                extrinsic: item.event.extrinsic.id,
+                extrinsic: item.extrinsic.id,
             },
         })
     }
 
     return new EventModel({
-        id: item.event.id,
-        extrinsic: item.event.extrinsic?.id ? new Extrinsic({ id: item.event.extrinsic.id }) : null,
+        id: item.id,
+        extrinsic: item.extrinsic?.id ? new Extrinsic({ id: item.extrinsic.id }) : null,
         data: new BalancesTransfer({
-            from: u8aToHex(eventData.from),
-            to: u8aToHex(eventData.to),
+            from: eventData.from,
+            to: eventData.to,
             amount: eventData.amount,
         }),
     })

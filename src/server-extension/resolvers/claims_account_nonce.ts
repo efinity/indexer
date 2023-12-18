@@ -4,7 +4,7 @@ import 'reflect-metadata'
 import { ApiPromise, WsProvider } from '@polkadot/api'
 import config from '../../config'
 
-const wsProvider = new WsProvider(config.dataSource.chain)
+const wsProvider = new WsProvider(config.dataSource.chain as string)
 const apiPromise = ApiPromise.create({ provider: wsProvider })
 
 @ObjectType()

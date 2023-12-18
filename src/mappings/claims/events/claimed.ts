@@ -1,5 +1,4 @@
-import { SubstrateBlock } from '@subsquid/substrate-processor'
-import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
+import { BlockHeader, Event as EventItem } from '@subsquid/substrate-processor'
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../common/errors'
 import { ClaimsClaimedEvent } from '../../../types/generated/events'
@@ -28,7 +27,7 @@ function getEventData(ctx: CommonContext, event: Event) {
     throw new UnknownVersionError(data.constructor.name)
 }
 
-function getDelayPeriod(ctx: CommonContext, block: SubstrateBlock) {
+function getDelayPeriod(ctx: CommonContext, block: BlockHeader) {
     const data = new ClaimsDelayClaimsPeriodStorage(ctx, block)
 
     if (data.isMatrixEnjinV603) {
@@ -38,14 +37,10 @@ function getDelayPeriod(ctx: CommonContext, block: SubstrateBlock) {
     throw new UnknownVersionError(data.constructor.name)
 }
 
-export async function claimed(
-    ctx: CommonContext,
-    block: SubstrateBlock,
-    item: EventItem<'Claims.Claimed', { event: { args: true; extrinsic: true } }>
-): Promise<EventModel | undefined> {
-    if (!item.event.extrinsic) return undefined
+export async function claimed(ctx: CommonContext, block: BlockHeader, item: EventItem): Promise<EventModel | undefined> {
+    if (!item.extrinsic) return undefined
 
-    const eventData = getEventData(ctx, item.event)
+    const eventData = getEventData(ctx, item)
 
     if (!eventData) return undefined
 

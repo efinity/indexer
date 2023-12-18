@@ -1,8 +1,5 @@
 import { u8aToHex } from '@polkadot/util'
-import { SubstrateBlock } from '@subsquid/substrate-processor'
-import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../common/errors'
-import { MultiTokensTransferredEvent } from '../../../types/generated/events'
 import {
     Account,
     AccountTokenEvent,
@@ -13,7 +10,6 @@ import {
     TokenAccount,
 } from '../../../model'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../types/generated/support'
 import { getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../jobs/collection-stats'
 import { Sns } from '../../../common/sns'

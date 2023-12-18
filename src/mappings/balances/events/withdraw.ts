@@ -1,24 +1,16 @@
-import { SubstrateBlock } from '@subsquid/substrate-processor'
-import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
+import { BlockHeader } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../../common/errors'
-import { BalancesWithdrawEvent } from '../../../types/generated/events'
-import { Event } from '../../../types/generated/support'
-import { CommonContext } from '../../types/contexts'
+import { balances } from '../../../types/generated/events'
+import { CommonContext, Event } from '../../types/contexts'
 
 function getEventData(ctx: CommonContext, event: Event) {
-    const data = new BalancesWithdrawEvent(ctx, event)
-
-    if (data.isMatrixEnjinV603) {
-        return data.asMatrixEnjinV603
+    if (balances.withdraw.matrixEnjinV603.is(event)) {
+        return balances.withdraw.matrixEnjinV603.decode(event)
     }
 
-    throw new UnknownVersionError(data.constructor.name)
+    throw new UnknownVersionError(balances.withdraw.name)
 }
 
-export async function withdraw(
-    ctx: CommonContext,
-    block: SubstrateBlock,
-    item: EventItem<'Balances.Withdraw', { event: { args: true; extrinsic: true } }>
-) {
-    return getEventData(ctx, item.event)
+export async function withdraw(ctx: CommonContext, block: BlockHeader, item: Event) {
+    return getEventData(ctx, item)
 }

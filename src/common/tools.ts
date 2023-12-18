@@ -16,7 +16,7 @@ export function isValidAddress(address: any) {
     }
 }
 
-export function encodeId(id: Uint8Array) {
+export function encodeId(id: Uint8Array | string) {
     return ss58.codec(config.prefix).encode(id)
 }
 
