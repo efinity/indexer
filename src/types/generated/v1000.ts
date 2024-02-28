@@ -303,6 +303,12 @@ export interface DispatchRuleDescriptor_WhitelistedPallets {
     value: Call[]
 }
 
+export interface DefaultCollectionDescriptor {
+    policy: DefaultCollectionPolicyDescriptor
+    explicitRoyaltyCurrencies: AssetId[]
+    attributes: AttributeKeyValuePair[]
+}
+
 export interface Timepoint {
     height: number
     index: number
@@ -4584,6 +4590,21 @@ export interface RequireTokenRule {
     tokenId: bigint
 }
 
+export interface DefaultCollectionPolicyDescriptor {
+    mint: DefaultMintPolicyDescriptor
+    market: DefaultMarketPolicyDescriptor
+}
+
+export interface AssetId {
+    collectionId: bigint
+    tokenId: bigint
+}
+
+export interface AttributeKeyValuePair {
+    key: Uint8Array
+    value: Uint8Array
+}
+
 export type RawOrigin = RawOrigin_Root | RawOrigin_Signed | RawOrigin_None
 
 export interface RawOrigin_Root {
@@ -5121,11 +5142,6 @@ export interface Account_EVM {
     value: Uint8Array
 }
 
-export interface AssetId {
-    collectionId: bigint
-    tokenId: bigint
-}
-
 export interface CurrencyIdAmountPair {
     currencyId: AssetId
     amount: bigint
@@ -5157,12 +5173,6 @@ export interface VersionedMultiAsset_V2 {
 export interface VersionedMultiAsset_V3 {
     __kind: 'V3'
     value: V3MultiAsset
-}
-
-export interface DefaultCollectionDescriptor {
-    policy: DefaultCollectionPolicyDescriptor
-    explicitRoyaltyCurrencies: AssetId[]
-    attributes: AttributeKeyValuePair[]
 }
 
 export interface DefaultCollectionMutation {
@@ -5236,11 +5246,6 @@ export interface Recipient {
 export interface Type_389 {
     accountId: Uint8Array
     params: DefaultMintParams
-}
-
-export interface AttributeKeyValuePair {
-    key: Uint8Array
-    value: Uint8Array
 }
 
 export interface Collection {
@@ -5552,6 +5557,16 @@ export interface Judgement_LowQuality {
 
 export interface Judgement_Erroneous {
     __kind: 'Erroneous'
+}
+
+export interface DefaultMintPolicyDescriptor {
+    maxTokenCount: (bigint | undefined)
+    maxTokenSupply: (bigint | undefined)
+    forceSingleMint: boolean
+}
+
+export interface DefaultMarketPolicyDescriptor {
+    royalty: (DefaultRoyalty | undefined)
 }
 
 export type DispatchRuleWrapper = DispatchRuleWrapper_WhitelistedCallers | DispatchRuleWrapper_WhitelistedCollections | DispatchRuleWrapper_MaxFuelBurnPerTransaction | DispatchRuleWrapper_UserFuelBudget | DispatchRuleWrapper_TankFuelBudget | DispatchRuleWrapper_RequireToken | DispatchRuleWrapper_PermittedCalls | DispatchRuleWrapper_PermittedExtrinsics | DispatchRuleWrapper_WhitelistedPallets
@@ -9792,11 +9807,6 @@ export interface V3Junctions_X8 {
     value: [V3Junction, V3Junction, V3Junction, V3Junction, V3Junction, V3Junction, V3Junction, V3Junction]
 }
 
-export interface DefaultCollectionPolicyDescriptor {
-    mint: DefaultMintPolicyDescriptor
-    market: DefaultMarketPolicyDescriptor
-}
-
 export type ShouldMutate = ShouldMutate_NoMutation | ShouldMutate_SomeMutation
 
 export interface ShouldMutate_NoMutation {
@@ -9976,6 +9986,11 @@ export interface Type_212_SomeMutation {
 export interface TransactionData {
     account: Uint8Array
     amount: bigint
+}
+
+export interface DefaultRoyalty {
+    beneficiary: Uint8Array
+    percentage: number
 }
 
 export interface UserFuelBudgetRule {
@@ -10584,21 +10599,6 @@ export interface V3Fungibility_Fungible {
 export interface V3Fungibility_NonFungible {
     __kind: 'NonFungible'
     value: V3AssetInstance
-}
-
-export interface DefaultMintPolicyDescriptor {
-    maxTokenCount: (bigint | undefined)
-    maxTokenSupply: (bigint | undefined)
-    forceSingleMint: boolean
-}
-
-export interface DefaultMarketPolicyDescriptor {
-    royalty: (DefaultRoyalty | undefined)
-}
-
-export interface DefaultRoyalty {
-    beneficiary: Uint8Array
-    percentage: number
 }
 
 export interface DefaultMintPolicy {

@@ -554,7 +554,7 @@ export interface V3Instruction_UnpaidExecution {
     checkOrigin: (V3MultiLocation | undefined)
 }
 
-export type Call = Call_System | Call_ParachainSystem | Call_Timestamp | Call_Sudo | Call_Preimage | Call_Scheduler | Call_Utility | Call_Balances | Call_Democracy | Call_Council | Call_TechnicalCommittee | Call_CommunityPool | Call_TechnicalMembership | Call_Multisig | Call_CollatorStaking | Call_Session | Call_XcmpQueue | Call_PolkadotXcm | Call_CumulusXcm | Call_DmpQueue | Call_OrmlXcm | Call_MatrixXcm | Call_XTokens | Call_Bounties | Call_MultiTokens | Call_Pools | Call_FuelTanks | Call_Marketplace | Call_ExtrinsicPause | Call_MatrixUtility | Call_Claims | Call_Identity
+export type Call = Call_System | Call_ParachainSystem | Call_Timestamp | Call_Preimage | Call_Scheduler | Call_Utility | Call_Balances | Call_Democracy | Call_Council | Call_TechnicalCommittee | Call_CommunityPool | Call_TechnicalMembership | Call_Multisig | Call_CollatorStaking | Call_Session | Call_XcmpQueue | Call_PolkadotXcm | Call_CumulusXcm | Call_DmpQueue | Call_OrmlXcm | Call_MatrixXcm | Call_XTokens | Call_Bounties | Call_MultiTokens | Call_Pools | Call_FuelTanks | Call_Marketplace | Call_ExtrinsicPause | Call_MatrixUtility | Call_Claims | Call_Identity
 
 export interface Call_System {
     __kind: 'System'
@@ -569,11 +569,6 @@ export interface Call_ParachainSystem {
 export interface Call_Timestamp {
     __kind: 'Timestamp'
     value: TimestampCall
-}
-
-export interface Call_Sudo {
-    __kind: 'Sudo'
-    value: SudoCall
 }
 
 export interface Call_Preimage {
@@ -864,12 +859,12 @@ export interface OriginCaller_system {
 
 export interface OriginCaller_Council {
     __kind: 'Council'
-    value: Type_309
+    value: Type_317
 }
 
 export interface OriginCaller_TechnicalCommittee {
     __kind: 'TechnicalCommittee'
-    value: Type_310
+    value: Type_318
 }
 
 export interface OriginCaller_PolkadotXcm {
@@ -879,7 +874,7 @@ export interface OriginCaller_PolkadotXcm {
 
 export interface OriginCaller_CumulusXcm {
     __kind: 'CumulusXcm'
-    value: Type_312
+    value: Type_320
 }
 
 export interface OriginCaller_Void {
@@ -1324,45 +1319,6 @@ export type TimestampCall = TimestampCall_set
 export interface TimestampCall_set {
     __kind: 'set'
     now: bigint
-}
-
-/**
- * Contains a variant per dispatchable extrinsic that this pallet has.
- */
-export type SudoCall = SudoCall_sudo | SudoCall_sudo_unchecked_weight | SudoCall_set_key | SudoCall_sudo_as
-
-/**
- * See [`Pallet::sudo`].
- */
-export interface SudoCall_sudo {
-    __kind: 'sudo'
-    call: Call
-}
-
-/**
- * See [`Pallet::sudo_unchecked_weight`].
- */
-export interface SudoCall_sudo_unchecked_weight {
-    __kind: 'sudo_unchecked_weight'
-    call: Call
-    weight: Weight
-}
-
-/**
- * See [`Pallet::set_key`].
- */
-export interface SudoCall_set_key {
-    __kind: 'set_key'
-    new: MultiAddress
-}
-
-/**
- * See [`Pallet::sudo_as`].
- */
-export interface SudoCall_sudo_as {
-    __kind: 'sudo_as'
-    who: MultiAddress
-    call: Call
 }
 
 /**
@@ -2260,7 +2216,7 @@ export interface PolkadotXcmCall_reserve_transfer_assets {
  */
 export interface PolkadotXcmCall_execute {
     __kind: 'execute'
-    message: Type_346
+    message: Type_352
     maxWeight: Weight
 }
 
@@ -2695,7 +2651,7 @@ export interface MultiTokensCall_batch_transfer {
 export interface MultiTokensCall_batch_mint {
     __kind: 'batch_mint'
     collectionId: bigint
-    recipients: Type_388[]
+    recipients: Type_394[]
 }
 
 /**
@@ -3525,35 +3481,35 @@ export interface RawOrigin_None {
     __kind: 'None'
 }
 
-export type Type_309 = Type_309_Members | Type_309_Member | Type_309__Phantom
+export type Type_317 = Type_317_Members | Type_317_Member | Type_317__Phantom
 
-export interface Type_309_Members {
+export interface Type_317_Members {
     __kind: 'Members'
     value: [number, number]
 }
 
-export interface Type_309_Member {
+export interface Type_317_Member {
     __kind: 'Member'
     value: Uint8Array
 }
 
-export interface Type_309__Phantom {
+export interface Type_317__Phantom {
     __kind: '_Phantom'
 }
 
-export type Type_310 = Type_310_Members | Type_310_Member | Type_310__Phantom
+export type Type_318 = Type_318_Members | Type_318_Member | Type_318__Phantom
 
-export interface Type_310_Members {
+export interface Type_318_Members {
     __kind: 'Members'
     value: [number, number]
 }
 
-export interface Type_310_Member {
+export interface Type_318_Member {
     __kind: 'Member'
     value: Uint8Array
 }
 
-export interface Type_310__Phantom {
+export interface Type_318__Phantom {
     __kind: '_Phantom'
 }
 
@@ -3569,13 +3525,13 @@ export interface Origin_Response {
     value: V3MultiLocation
 }
 
-export type Type_312 = Type_312_Relay | Type_312_SiblingParachain
+export type Type_320 = Type_320_Relay | Type_320_SiblingParachain
 
-export interface Type_312_Relay {
+export interface Type_320_Relay {
     __kind: 'Relay'
 }
 
-export interface Type_312_SiblingParachain {
+export interface Type_320_SiblingParachain {
     __kind: 'SiblingParachain'
     value: number
 }
@@ -3597,7 +3553,7 @@ export interface Phase_Initialization {
     __kind: 'Initialization'
 }
 
-export type Event = Event_System | Event_ParachainSystem | Event_Sudo | Event_Preimage | Event_Scheduler | Event_Utility | Event_Balances | Event_TransactionPayment | Event_Democracy | Event_Council | Event_TechnicalCommittee | Event_CommunityPool | Event_TechnicalMembership | Event_Multisig | Event_CollatorStaking | Event_Session | Event_XcmpQueue | Event_PolkadotXcm | Event_CumulusXcm | Event_DmpQueue | Event_OrmlXcm | Event_MatrixXcm | Event_UnknownTokens | Event_XTokens | Event_Bounties | Event_MultiTokens | Event_Pools | Event_FuelTanks | Event_Marketplace | Event_ExtrinsicPause | Event_MatrixUtility | Event_Claims | Event_Identity
+export type Event = Event_System | Event_ParachainSystem | Event_Preimage | Event_Scheduler | Event_Utility | Event_Balances | Event_TransactionPayment | Event_Democracy | Event_Council | Event_TechnicalCommittee | Event_CommunityPool | Event_TechnicalMembership | Event_Multisig | Event_CollatorStaking | Event_Session | Event_XcmpQueue | Event_PolkadotXcm | Event_CumulusXcm | Event_DmpQueue | Event_OrmlXcm | Event_MatrixXcm | Event_UnknownTokens | Event_XTokens | Event_Bounties | Event_MultiTokens | Event_Pools | Event_FuelTanks | Event_Marketplace | Event_ExtrinsicPause | Event_MatrixUtility | Event_Claims | Event_Identity
 
 export interface Event_System {
     __kind: 'System'
@@ -3607,11 +3563,6 @@ export interface Event_System {
 export interface Event_ParachainSystem {
     __kind: 'ParachainSystem'
     value: ParachainSystemEvent
-}
-
-export interface Event_Sudo {
-    __kind: 'Sudo'
-    value: SudoEvent
 }
 
 export interface Event_Preimage {
@@ -4087,16 +4038,16 @@ export interface VersionedXcm_V3 {
     value: V3Instruction[]
 }
 
-export type Type_346 = Type_346_V2 | Type_346_V3
+export type Type_352 = Type_352_V2 | Type_352_V3
 
-export interface Type_346_V2 {
+export interface Type_352_V2 {
     __kind: 'V2'
-    value: Type_349[]
+    value: Type_355[]
 }
 
-export interface Type_346_V3 {
+export interface Type_352_V3 {
     __kind: 'V3'
-    value: Type_353[]
+    value: Type_359[]
 }
 
 export type XcmOperation = XcmOperation_XTokensTransfer | XcmOperation_ParachainFee
@@ -4128,9 +4079,9 @@ export interface VersionedMultiAsset_V3 {
 }
 
 export interface DefaultTokenMutation {
-    behavior: Type_146
-    listingForbidden: Type_149
-    metadata: Type_150
+    behavior: Type_145
+    listingForbidden: Type_148
+    metadata: Type_149
 }
 
 export type DefaultMintParams = DefaultMintParams_CreateToken | DefaultMintParams_Mint
@@ -4189,7 +4140,7 @@ export interface Recipient {
     params: DefaultTransferParams
 }
 
-export interface Type_388 {
+export interface Type_394 {
     accountId: Uint8Array
     params: DefaultMintParams
 }
@@ -4271,7 +4222,7 @@ export interface PoolsMutation {
 }
 
 export interface DefaultTankMutation {
-    userAccountManagement: Type_212
+    userAccountManagement: Type_211
     providesDeposit: (boolean | undefined)
     accountRules: (AccountRuleDescriptor[] | undefined)
 }
@@ -4691,35 +4642,6 @@ export interface ParachainSystemEvent_UpwardMessageSent {
 /**
  * The `Event` enum of this pallet
  */
-export type SudoEvent = SudoEvent_Sudid | SudoEvent_KeyChanged | SudoEvent_SudoAsDone
-
-/**
- * A sudo just took place. \[result\]
- */
-export interface SudoEvent_Sudid {
-    __kind: 'Sudid'
-    sudoResult: Type_33
-}
-
-/**
- * The \[sudoer\] just switched identity; the old key is supplied if one existed.
- */
-export interface SudoEvent_KeyChanged {
-    __kind: 'KeyChanged'
-    oldSudoer: (Uint8Array | undefined)
-}
-
-/**
- * A sudo just took place. \[result\]
- */
-export interface SudoEvent_SudoAsDone {
-    __kind: 'SudoAsDone'
-    sudoResult: Type_33
-}
-
-/**
- * The `Event` enum of this pallet
- */
 export type PreimageEvent = PreimageEvent_Noted | PreimageEvent_Requested | PreimageEvent_Cleared
 
 /**
@@ -4776,7 +4698,7 @@ export interface SchedulerEvent_Dispatched {
     __kind: 'Dispatched'
     task: [number, number]
     id: (Uint8Array | undefined)
-    result: Type_33
+    result: Type_35
 }
 
 /**
@@ -4855,7 +4777,7 @@ export interface UtilityEvent_ItemFailed {
  */
 export interface UtilityEvent_DispatchedAs {
     __kind: 'DispatchedAs'
-    result: Type_33
+    result: Type_35
 }
 
 /**
@@ -5296,7 +5218,7 @@ export interface CouncilEvent_Disapproved {
 export interface CouncilEvent_Executed {
     __kind: 'Executed'
     proposalHash: Uint8Array
-    result: Type_33
+    result: Type_35
 }
 
 /**
@@ -5305,7 +5227,7 @@ export interface CouncilEvent_Executed {
 export interface CouncilEvent_MemberExecuted {
     __kind: 'MemberExecuted'
     proposalHash: Uint8Array
-    result: Type_33
+    result: Type_35
 }
 
 /**
@@ -5370,7 +5292,7 @@ export interface TechnicalCommitteeEvent_Disapproved {
 export interface TechnicalCommitteeEvent_Executed {
     __kind: 'Executed'
     proposalHash: Uint8Array
-    result: Type_33
+    result: Type_35
 }
 
 /**
@@ -5379,7 +5301,7 @@ export interface TechnicalCommitteeEvent_Executed {
 export interface TechnicalCommitteeEvent_MemberExecuted {
     __kind: 'MemberExecuted'
     proposalHash: Uint8Array
-    result: Type_33
+    result: Type_35
 }
 
 /**
@@ -5557,7 +5479,7 @@ export interface MultisigEvent_MultisigExecuted {
     timepoint: Timepoint
     multisig: Uint8Array
     callHash: Uint8Array
-    result: Type_33
+    result: Type_35
 }
 
 /**
@@ -7978,93 +7900,93 @@ export interface V2Instruction_UnsubscribeVersion {
     __kind: 'UnsubscribeVersion'
 }
 
-export type Type_349 = Type_349_WithdrawAsset | Type_349_ReserveAssetDeposited | Type_349_ReceiveTeleportedAsset | Type_349_QueryResponse | Type_349_TransferAsset | Type_349_TransferReserveAsset | Type_349_Transact | Type_349_HrmpNewChannelOpenRequest | Type_349_HrmpChannelAccepted | Type_349_HrmpChannelClosing | Type_349_ClearOrigin | Type_349_DescendOrigin | Type_349_ReportError | Type_349_DepositAsset | Type_349_DepositReserveAsset | Type_349_ExchangeAsset | Type_349_InitiateReserveWithdraw | Type_349_InitiateTeleport | Type_349_QueryHolding | Type_349_BuyExecution | Type_349_RefundSurplus | Type_349_SetErrorHandler | Type_349_SetAppendix | Type_349_ClearError | Type_349_ClaimAsset | Type_349_Trap | Type_349_SubscribeVersion | Type_349_UnsubscribeVersion
+export type Type_355 = Type_355_WithdrawAsset | Type_355_ReserveAssetDeposited | Type_355_ReceiveTeleportedAsset | Type_355_QueryResponse | Type_355_TransferAsset | Type_355_TransferReserveAsset | Type_355_Transact | Type_355_HrmpNewChannelOpenRequest | Type_355_HrmpChannelAccepted | Type_355_HrmpChannelClosing | Type_355_ClearOrigin | Type_355_DescendOrigin | Type_355_ReportError | Type_355_DepositAsset | Type_355_DepositReserveAsset | Type_355_ExchangeAsset | Type_355_InitiateReserveWithdraw | Type_355_InitiateTeleport | Type_355_QueryHolding | Type_355_BuyExecution | Type_355_RefundSurplus | Type_355_SetErrorHandler | Type_355_SetAppendix | Type_355_ClearError | Type_355_ClaimAsset | Type_355_Trap | Type_355_SubscribeVersion | Type_355_UnsubscribeVersion
 
-export interface Type_349_WithdrawAsset {
+export interface Type_355_WithdrawAsset {
     __kind: 'WithdrawAsset'
     value: V2MultiAsset[]
 }
 
-export interface Type_349_ReserveAssetDeposited {
+export interface Type_355_ReserveAssetDeposited {
     __kind: 'ReserveAssetDeposited'
     value: V2MultiAsset[]
 }
 
-export interface Type_349_ReceiveTeleportedAsset {
+export interface Type_355_ReceiveTeleportedAsset {
     __kind: 'ReceiveTeleportedAsset'
     value: V2MultiAsset[]
 }
 
-export interface Type_349_QueryResponse {
+export interface Type_355_QueryResponse {
     __kind: 'QueryResponse'
     queryId: bigint
     response: V2Response
     maxWeight: bigint
 }
 
-export interface Type_349_TransferAsset {
+export interface Type_355_TransferAsset {
     __kind: 'TransferAsset'
     assets: V2MultiAsset[]
     beneficiary: V2MultiLocation
 }
 
-export interface Type_349_TransferReserveAsset {
+export interface Type_355_TransferReserveAsset {
     __kind: 'TransferReserveAsset'
     assets: V2MultiAsset[]
     dest: V2MultiLocation
     xcm: V2Instruction[]
 }
 
-export interface Type_349_Transact {
+export interface Type_355_Transact {
     __kind: 'Transact'
     originType: V2OriginKind
     requireWeightAtMost: bigint
     call: DoubleEncoded
 }
 
-export interface Type_349_HrmpNewChannelOpenRequest {
+export interface Type_355_HrmpNewChannelOpenRequest {
     __kind: 'HrmpNewChannelOpenRequest'
     sender: number
     maxMessageSize: number
     maxCapacity: number
 }
 
-export interface Type_349_HrmpChannelAccepted {
+export interface Type_355_HrmpChannelAccepted {
     __kind: 'HrmpChannelAccepted'
     recipient: number
 }
 
-export interface Type_349_HrmpChannelClosing {
+export interface Type_355_HrmpChannelClosing {
     __kind: 'HrmpChannelClosing'
     initiator: number
     sender: number
     recipient: number
 }
 
-export interface Type_349_ClearOrigin {
+export interface Type_355_ClearOrigin {
     __kind: 'ClearOrigin'
 }
 
-export interface Type_349_DescendOrigin {
+export interface Type_355_DescendOrigin {
     __kind: 'DescendOrigin'
     value: V2Junctions
 }
 
-export interface Type_349_ReportError {
+export interface Type_355_ReportError {
     __kind: 'ReportError'
     queryId: bigint
     dest: V2MultiLocation
     maxResponseWeight: bigint
 }
 
-export interface Type_349_DepositAsset {
+export interface Type_355_DepositAsset {
     __kind: 'DepositAsset'
     assets: V2MultiAssetFilter
     maxAssets: number
     beneficiary: V2MultiLocation
 }
 
-export interface Type_349_DepositReserveAsset {
+export interface Type_355_DepositReserveAsset {
     __kind: 'DepositReserveAsset'
     assets: V2MultiAssetFilter
     maxAssets: number
@@ -8072,27 +7994,27 @@ export interface Type_349_DepositReserveAsset {
     xcm: V2Instruction[]
 }
 
-export interface Type_349_ExchangeAsset {
+export interface Type_355_ExchangeAsset {
     __kind: 'ExchangeAsset'
     give: V2MultiAssetFilter
     receive: V2MultiAsset[]
 }
 
-export interface Type_349_InitiateReserveWithdraw {
+export interface Type_355_InitiateReserveWithdraw {
     __kind: 'InitiateReserveWithdraw'
     assets: V2MultiAssetFilter
     reserve: V2MultiLocation
     xcm: V2Instruction[]
 }
 
-export interface Type_349_InitiateTeleport {
+export interface Type_355_InitiateTeleport {
     __kind: 'InitiateTeleport'
     assets: V2MultiAssetFilter
     dest: V2MultiLocation
     xcm: V2Instruction[]
 }
 
-export interface Type_349_QueryHolding {
+export interface Type_355_QueryHolding {
     __kind: 'QueryHolding'
     queryId: bigint
     dest: V2MultiLocation
@@ -8100,69 +8022,69 @@ export interface Type_349_QueryHolding {
     maxResponseWeight: bigint
 }
 
-export interface Type_349_BuyExecution {
+export interface Type_355_BuyExecution {
     __kind: 'BuyExecution'
     fees: V2MultiAsset
     weightLimit: V2WeightLimit
 }
 
-export interface Type_349_RefundSurplus {
+export interface Type_355_RefundSurplus {
     __kind: 'RefundSurplus'
 }
 
-export interface Type_349_SetErrorHandler {
+export interface Type_355_SetErrorHandler {
     __kind: 'SetErrorHandler'
-    value: Type_349[]
+    value: Type_355[]
 }
 
-export interface Type_349_SetAppendix {
+export interface Type_355_SetAppendix {
     __kind: 'SetAppendix'
-    value: Type_349[]
+    value: Type_355[]
 }
 
-export interface Type_349_ClearError {
+export interface Type_355_ClearError {
     __kind: 'ClearError'
 }
 
-export interface Type_349_ClaimAsset {
+export interface Type_355_ClaimAsset {
     __kind: 'ClaimAsset'
     assets: V2MultiAsset[]
     ticket: V2MultiLocation
 }
 
-export interface Type_349_Trap {
+export interface Type_355_Trap {
     __kind: 'Trap'
     value: bigint
 }
 
-export interface Type_349_SubscribeVersion {
+export interface Type_355_SubscribeVersion {
     __kind: 'SubscribeVersion'
     queryId: bigint
     maxResponseWeight: bigint
 }
 
-export interface Type_349_UnsubscribeVersion {
+export interface Type_355_UnsubscribeVersion {
     __kind: 'UnsubscribeVersion'
 }
 
-export type Type_353 = Type_353_WithdrawAsset | Type_353_ReserveAssetDeposited | Type_353_ReceiveTeleportedAsset | Type_353_QueryResponse | Type_353_TransferAsset | Type_353_TransferReserveAsset | Type_353_Transact | Type_353_HrmpNewChannelOpenRequest | Type_353_HrmpChannelAccepted | Type_353_HrmpChannelClosing | Type_353_ClearOrigin | Type_353_DescendOrigin | Type_353_ReportError | Type_353_DepositAsset | Type_353_DepositReserveAsset | Type_353_ExchangeAsset | Type_353_InitiateReserveWithdraw | Type_353_InitiateTeleport | Type_353_ReportHolding | Type_353_BuyExecution | Type_353_RefundSurplus | Type_353_SetErrorHandler | Type_353_SetAppendix | Type_353_ClearError | Type_353_ClaimAsset | Type_353_Trap | Type_353_SubscribeVersion | Type_353_UnsubscribeVersion | Type_353_BurnAsset | Type_353_ExpectAsset | Type_353_ExpectOrigin | Type_353_ExpectError | Type_353_ExpectTransactStatus | Type_353_QueryPallet | Type_353_ExpectPallet | Type_353_ReportTransactStatus | Type_353_ClearTransactStatus | Type_353_UniversalOrigin | Type_353_ExportMessage | Type_353_LockAsset | Type_353_UnlockAsset | Type_353_NoteUnlockable | Type_353_RequestUnlock | Type_353_SetFeesMode | Type_353_SetTopic | Type_353_ClearTopic | Type_353_AliasOrigin | Type_353_UnpaidExecution
+export type Type_359 = Type_359_WithdrawAsset | Type_359_ReserveAssetDeposited | Type_359_ReceiveTeleportedAsset | Type_359_QueryResponse | Type_359_TransferAsset | Type_359_TransferReserveAsset | Type_359_Transact | Type_359_HrmpNewChannelOpenRequest | Type_359_HrmpChannelAccepted | Type_359_HrmpChannelClosing | Type_359_ClearOrigin | Type_359_DescendOrigin | Type_359_ReportError | Type_359_DepositAsset | Type_359_DepositReserveAsset | Type_359_ExchangeAsset | Type_359_InitiateReserveWithdraw | Type_359_InitiateTeleport | Type_359_ReportHolding | Type_359_BuyExecution | Type_359_RefundSurplus | Type_359_SetErrorHandler | Type_359_SetAppendix | Type_359_ClearError | Type_359_ClaimAsset | Type_359_Trap | Type_359_SubscribeVersion | Type_359_UnsubscribeVersion | Type_359_BurnAsset | Type_359_ExpectAsset | Type_359_ExpectOrigin | Type_359_ExpectError | Type_359_ExpectTransactStatus | Type_359_QueryPallet | Type_359_ExpectPallet | Type_359_ReportTransactStatus | Type_359_ClearTransactStatus | Type_359_UniversalOrigin | Type_359_ExportMessage | Type_359_LockAsset | Type_359_UnlockAsset | Type_359_NoteUnlockable | Type_359_RequestUnlock | Type_359_SetFeesMode | Type_359_SetTopic | Type_359_ClearTopic | Type_359_AliasOrigin | Type_359_UnpaidExecution
 
-export interface Type_353_WithdrawAsset {
+export interface Type_359_WithdrawAsset {
     __kind: 'WithdrawAsset'
     value: V3MultiAsset[]
 }
 
-export interface Type_353_ReserveAssetDeposited {
+export interface Type_359_ReserveAssetDeposited {
     __kind: 'ReserveAssetDeposited'
     value: V3MultiAsset[]
 }
 
-export interface Type_353_ReceiveTeleportedAsset {
+export interface Type_359_ReceiveTeleportedAsset {
     __kind: 'ReceiveTeleportedAsset'
     value: V3MultiAsset[]
 }
 
-export interface Type_353_QueryResponse {
+export interface Type_359_QueryResponse {
     __kind: 'QueryResponse'
     queryId: bigint
     response: V3Response
@@ -8170,176 +8092,176 @@ export interface Type_353_QueryResponse {
     querier: (V3MultiLocation | undefined)
 }
 
-export interface Type_353_TransferAsset {
+export interface Type_359_TransferAsset {
     __kind: 'TransferAsset'
     assets: V3MultiAsset[]
     beneficiary: V3MultiLocation
 }
 
-export interface Type_353_TransferReserveAsset {
+export interface Type_359_TransferReserveAsset {
     __kind: 'TransferReserveAsset'
     assets: V3MultiAsset[]
     dest: V3MultiLocation
     xcm: V3Instruction[]
 }
 
-export interface Type_353_Transact {
+export interface Type_359_Transact {
     __kind: 'Transact'
     originKind: V2OriginKind
     requireWeightAtMost: Weight
     call: DoubleEncoded
 }
 
-export interface Type_353_HrmpNewChannelOpenRequest {
+export interface Type_359_HrmpNewChannelOpenRequest {
     __kind: 'HrmpNewChannelOpenRequest'
     sender: number
     maxMessageSize: number
     maxCapacity: number
 }
 
-export interface Type_353_HrmpChannelAccepted {
+export interface Type_359_HrmpChannelAccepted {
     __kind: 'HrmpChannelAccepted'
     recipient: number
 }
 
-export interface Type_353_HrmpChannelClosing {
+export interface Type_359_HrmpChannelClosing {
     __kind: 'HrmpChannelClosing'
     initiator: number
     sender: number
     recipient: number
 }
 
-export interface Type_353_ClearOrigin {
+export interface Type_359_ClearOrigin {
     __kind: 'ClearOrigin'
 }
 
-export interface Type_353_DescendOrigin {
+export interface Type_359_DescendOrigin {
     __kind: 'DescendOrigin'
     value: V3Junctions
 }
 
-export interface Type_353_ReportError {
+export interface Type_359_ReportError {
     __kind: 'ReportError'
     value: V3QueryResponseInfo
 }
 
-export interface Type_353_DepositAsset {
+export interface Type_359_DepositAsset {
     __kind: 'DepositAsset'
     assets: V3MultiAssetFilter
     beneficiary: V3MultiLocation
 }
 
-export interface Type_353_DepositReserveAsset {
+export interface Type_359_DepositReserveAsset {
     __kind: 'DepositReserveAsset'
     assets: V3MultiAssetFilter
     dest: V3MultiLocation
     xcm: V3Instruction[]
 }
 
-export interface Type_353_ExchangeAsset {
+export interface Type_359_ExchangeAsset {
     __kind: 'ExchangeAsset'
     give: V3MultiAssetFilter
     want: V3MultiAsset[]
     maximal: boolean
 }
 
-export interface Type_353_InitiateReserveWithdraw {
+export interface Type_359_InitiateReserveWithdraw {
     __kind: 'InitiateReserveWithdraw'
     assets: V3MultiAssetFilter
     reserve: V3MultiLocation
     xcm: V3Instruction[]
 }
 
-export interface Type_353_InitiateTeleport {
+export interface Type_359_InitiateTeleport {
     __kind: 'InitiateTeleport'
     assets: V3MultiAssetFilter
     dest: V3MultiLocation
     xcm: V3Instruction[]
 }
 
-export interface Type_353_ReportHolding {
+export interface Type_359_ReportHolding {
     __kind: 'ReportHolding'
     responseInfo: V3QueryResponseInfo
     assets: V3MultiAssetFilter
 }
 
-export interface Type_353_BuyExecution {
+export interface Type_359_BuyExecution {
     __kind: 'BuyExecution'
     fees: V3MultiAsset
     weightLimit: V3WeightLimit
 }
 
-export interface Type_353_RefundSurplus {
+export interface Type_359_RefundSurplus {
     __kind: 'RefundSurplus'
 }
 
-export interface Type_353_SetErrorHandler {
+export interface Type_359_SetErrorHandler {
     __kind: 'SetErrorHandler'
-    value: Type_353[]
+    value: Type_359[]
 }
 
-export interface Type_353_SetAppendix {
+export interface Type_359_SetAppendix {
     __kind: 'SetAppendix'
-    value: Type_353[]
+    value: Type_359[]
 }
 
-export interface Type_353_ClearError {
+export interface Type_359_ClearError {
     __kind: 'ClearError'
 }
 
-export interface Type_353_ClaimAsset {
+export interface Type_359_ClaimAsset {
     __kind: 'ClaimAsset'
     assets: V3MultiAsset[]
     ticket: V3MultiLocation
 }
 
-export interface Type_353_Trap {
+export interface Type_359_Trap {
     __kind: 'Trap'
     value: bigint
 }
 
-export interface Type_353_SubscribeVersion {
+export interface Type_359_SubscribeVersion {
     __kind: 'SubscribeVersion'
     queryId: bigint
     maxResponseWeight: Weight
 }
 
-export interface Type_353_UnsubscribeVersion {
+export interface Type_359_UnsubscribeVersion {
     __kind: 'UnsubscribeVersion'
 }
 
-export interface Type_353_BurnAsset {
+export interface Type_359_BurnAsset {
     __kind: 'BurnAsset'
     value: V3MultiAsset[]
 }
 
-export interface Type_353_ExpectAsset {
+export interface Type_359_ExpectAsset {
     __kind: 'ExpectAsset'
     value: V3MultiAsset[]
 }
 
-export interface Type_353_ExpectOrigin {
+export interface Type_359_ExpectOrigin {
     __kind: 'ExpectOrigin'
     value: (V3MultiLocation | undefined)
 }
 
-export interface Type_353_ExpectError {
+export interface Type_359_ExpectError {
     __kind: 'ExpectError'
     value: ([number, V3Error] | undefined)
 }
 
-export interface Type_353_ExpectTransactStatus {
+export interface Type_359_ExpectTransactStatus {
     __kind: 'ExpectTransactStatus'
     value: V3MaybeErrorCode
 }
 
-export interface Type_353_QueryPallet {
+export interface Type_359_QueryPallet {
     __kind: 'QueryPallet'
     moduleName: Uint8Array
     responseInfo: V3QueryResponseInfo
 }
 
-export interface Type_353_ExpectPallet {
+export interface Type_359_ExpectPallet {
     __kind: 'ExpectPallet'
     index: number
     name: Uint8Array
@@ -8348,85 +8270,96 @@ export interface Type_353_ExpectPallet {
     minCrateMinor: number
 }
 
-export interface Type_353_ReportTransactStatus {
+export interface Type_359_ReportTransactStatus {
     __kind: 'ReportTransactStatus'
     value: V3QueryResponseInfo
 }
 
-export interface Type_353_ClearTransactStatus {
+export interface Type_359_ClearTransactStatus {
     __kind: 'ClearTransactStatus'
 }
 
-export interface Type_353_UniversalOrigin {
+export interface Type_359_UniversalOrigin {
     __kind: 'UniversalOrigin'
     value: V3Junction
 }
 
-export interface Type_353_ExportMessage {
+export interface Type_359_ExportMessage {
     __kind: 'ExportMessage'
     network: V3NetworkId
     destination: V3Junctions
     xcm: V3Instruction[]
 }
 
-export interface Type_353_LockAsset {
+export interface Type_359_LockAsset {
     __kind: 'LockAsset'
     asset: V3MultiAsset
     unlocker: V3MultiLocation
 }
 
-export interface Type_353_UnlockAsset {
+export interface Type_359_UnlockAsset {
     __kind: 'UnlockAsset'
     asset: V3MultiAsset
     target: V3MultiLocation
 }
 
-export interface Type_353_NoteUnlockable {
+export interface Type_359_NoteUnlockable {
     __kind: 'NoteUnlockable'
     asset: V3MultiAsset
     owner: V3MultiLocation
 }
 
-export interface Type_353_RequestUnlock {
+export interface Type_359_RequestUnlock {
     __kind: 'RequestUnlock'
     asset: V3MultiAsset
     locker: V3MultiLocation
 }
 
-export interface Type_353_SetFeesMode {
+export interface Type_359_SetFeesMode {
     __kind: 'SetFeesMode'
     jitWithdraw: boolean
 }
 
-export interface Type_353_SetTopic {
+export interface Type_359_SetTopic {
     __kind: 'SetTopic'
     value: Uint8Array
 }
 
-export interface Type_353_ClearTopic {
+export interface Type_359_ClearTopic {
     __kind: 'ClearTopic'
 }
 
-export interface Type_353_AliasOrigin {
+export interface Type_359_AliasOrigin {
     __kind: 'AliasOrigin'
     value: V3MultiLocation
 }
 
-export interface Type_353_UnpaidExecution {
+export interface Type_359_UnpaidExecution {
     __kind: 'UnpaidExecution'
     weightLimit: V3WeightLimit
     checkOrigin: (V3MultiLocation | undefined)
 }
 
-export type Type_146 = Type_146_NoMutation | Type_146_SomeMutation
+export type Type_145 = Type_145_NoMutation | Type_145_SomeMutation
 
-export interface Type_146_NoMutation {
+export interface Type_145_NoMutation {
     __kind: 'NoMutation'
 }
 
-export interface Type_146_SomeMutation {
+export interface Type_145_SomeMutation {
     __kind: 'SomeMutation'
     value: (TokenMarketBehavior | undefined)
+}
+
+export type Type_148 = Type_148_NoMutation | Type_148_SomeMutation
+
+export interface Type_148_NoMutation {
+    __kind: 'NoMutation'
+}
+
+export interface Type_148_SomeMutation {
+    __kind: 'SomeMutation'
+    value: boolean
 }
 
 export type Type_149 = Type_149_NoMutation | Type_149_SomeMutation
@@ -8436,17 +8369,6 @@ export interface Type_149_NoMutation {
 }
 
 export interface Type_149_SomeMutation {
-    __kind: 'SomeMutation'
-    value: boolean
-}
-
-export type Type_150 = Type_150_NoMutation | Type_150_SomeMutation
-
-export interface Type_150_NoMutation {
-    __kind: 'NoMutation'
-}
-
-export interface Type_150_SomeMutation {
     __kind: 'SomeMutation'
     value: DefaultTokenMetadata
 }
@@ -8566,13 +8488,13 @@ export interface Pool {
     feeShare: number
 }
 
-export type Type_212 = Type_212_NoMutation | Type_212_SomeMutation
+export type Type_211 = Type_211_NoMutation | Type_211_SomeMutation
 
-export interface Type_212_NoMutation {
+export interface Type_211_NoMutation {
     __kind: 'NoMutation'
 }
 
-export interface Type_212_SomeMutation {
+export interface Type_211_SomeMutation {
     __kind: 'SomeMutation'
     value: (UserAccountManagement | undefined)
 }
@@ -8650,13 +8572,13 @@ export interface DispatchError_RootNotAllowed {
     __kind: 'RootNotAllowed'
 }
 
-export type Type_33 = Type_33_Ok | Type_33_Err
+export type Type_35 = Type_35_Ok | Type_35_Err
 
-export interface Type_33_Ok {
+export interface Type_35_Ok {
     __kind: 'Ok'
 }
 
-export interface Type_33_Err {
+export interface Type_35_Err {
     __kind: 'Err'
     value: DispatchError
 }

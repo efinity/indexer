@@ -6,6 +6,7 @@ import * as v600 from './v600'
 import * as v602 from './v602'
 import * as matrixEnjinV1000 from './matrixEnjinV1000'
 import * as v604 from './v604'
+import * as matrixEnjinV1004 from './matrixEnjinV1004'
 import * as v1000 from './v1000'
 import * as v1004 from './v1004'
 
@@ -2496,6 +2497,36 @@ export class DmpQueueExecutedDownwardEvent {
     /**
      * Downward message executed with the given outcome.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('DmpQueue.ExecutedDownward') === '7021ea4fa580e8204fcd82e85ef6e026e294bfb487dcd58921d41103a53dcbaa'
+    }
+
+    /**
+     * Downward message executed with the given outcome.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array, messageId: Uint8Array, outcome: matrixEnjinV1004.V3Outcome} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Downward message executed with the given outcome.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('DmpQueue.ExecutedDownward') === 'bbdc5e15442f2bee7199707f9da66674b3ad89835c84687a406e183c7d31121e'
+    }
+
+    /**
+     * Downward message executed with the given outcome.
+     */
+    get asV500(): {messageId: Uint8Array, outcome: v500.V3Outcome} {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Downward message executed with the given outcome.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('DmpQueue.ExecutedDownward') === '7021ea4fa580e8204fcd82e85ef6e026e294bfb487dcd58921d41103a53dcbaa'
     }
@@ -2534,6 +2565,36 @@ export class DmpQueueInvalidFormatEvent {
      */
     get asMatrixEnjinV603(): {messageId: Uint8Array} {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Downward message is invalid XCM.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('DmpQueue.InvalidFormat') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
+    }
+
+    /**
+     * Downward message is invalid XCM.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Downward message is invalid XCM.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('DmpQueue.InvalidFormat') === '6bcb1469518e8e7bacd0242af782ebd652887f65f7377a9b2d81ccea6505416e'
+    }
+
+    /**
+     * Downward message is invalid XCM.
+     */
+    get asV500(): {messageId: Uint8Array} {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -2584,6 +2645,36 @@ export class DmpQueueMaxMessagesExhaustedEvent {
     /**
      * The maximum number of downward messages was reached.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('DmpQueue.MaxMessagesExhausted') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
+    }
+
+    /**
+     * The maximum number of downward messages was reached.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * The maximum number of downward messages was.
+     */
+    get isV602(): boolean {
+        return this._chain.getEventHash('DmpQueue.MaxMessagesExhausted') === '6bcb1469518e8e7bacd0242af782ebd652887f65f7377a9b2d81ccea6505416e'
+    }
+
+    /**
+     * The maximum number of downward messages was.
+     */
+    get asV602(): {messageId: Uint8Array} {
+        assert(this.isV602)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * The maximum number of downward messages was reached.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('DmpQueue.MaxMessagesExhausted') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
     }
@@ -2622,6 +2713,36 @@ export class DmpQueueOverweightEnqueuedEvent {
      */
     get asMatrixEnjinV603(): {messageId: Uint8Array, overweightIndex: bigint, requiredWeight: matrixEnjinV603.Weight} {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Downward message is overweight and was placed in the overweight queue.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('DmpQueue.OverweightEnqueued') === '25e84a4e2cb250d20fd87f408fb5a2d391276eb4c4e7f2f3b3629f4fb818c798'
+    }
+
+    /**
+     * Downward message is overweight and was placed in the overweight queue.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array, messageId: Uint8Array, overweightIndex: bigint, requiredWeight: matrixEnjinV1004.Weight} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Downward message is overweight and was placed in the overweight queue.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('DmpQueue.OverweightEnqueued') === '48bcfc366f324064903ddb05910b4d640e5483bb8166484d427fea6ec6716e87'
+    }
+
+    /**
+     * Downward message is overweight and was placed in the overweight queue.
+     */
+    get asV500(): {messageId: Uint8Array, overweightIndex: bigint, requiredWeight: v500.Weight} {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -2701,6 +2822,36 @@ export class DmpQueueUnsupportedVersionEvent {
     /**
      * Downward message is unsupported version of XCM.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('DmpQueue.UnsupportedVersion') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
+    }
+
+    /**
+     * Downward message is unsupported version of XCM.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Downward message is unsupported version of XCM.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('DmpQueue.UnsupportedVersion') === '6bcb1469518e8e7bacd0242af782ebd652887f65f7377a9b2d81ccea6505416e'
+    }
+
+    /**
+     * Downward message is unsupported version of XCM.
+     */
+    get asV500(): {messageId: Uint8Array} {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Downward message is unsupported version of XCM.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('DmpQueue.UnsupportedVersion') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
     }
@@ -2739,6 +2890,36 @@ export class DmpQueueWeightExhaustedEvent {
      */
     get asMatrixEnjinV603(): {messageId: Uint8Array, remainingWeight: matrixEnjinV603.Weight, requiredWeight: matrixEnjinV603.Weight} {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * The weight limit for handling downward messages was reached.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('DmpQueue.WeightExhausted') === '9c0c43a03bdff3e6f38d5a9f33b5e31cad02cd92b10a65d9073d2d2a935eab09'
+    }
+
+    /**
+     * The weight limit for handling downward messages was reached.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array, messageId: Uint8Array, remainingWeight: matrixEnjinV1004.Weight, requiredWeight: matrixEnjinV1004.Weight} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * The weight limit for handling downward messages was reached.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('DmpQueue.WeightExhausted') === 'e2c32a245af45a14cf9180adc1d112198df722bb27ee76b5ea163138bb102466'
+    }
+
+    /**
+     * The weight limit for handling downward messages was reached.
+     */
+    get asV500(): {messageId: Uint8Array, remainingWeight: v500.Weight, requiredWeight: v500.Weight} {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -4076,6 +4257,36 @@ export class MarketplaceListingCreatedEvent {
     /**
      * A listing was created
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('Marketplace.ListingCreated') === '146bb778e90697fa64e871776cf4e4c4f9a89d9fb441caf7df5df7db5d90c7c1'
+    }
+
+    /**
+     * A listing was created
+     */
+    get asMatrixEnjinV1004(): {listingId: Uint8Array, listing: matrixEnjinV1004.Listing} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A listing was created
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('Marketplace.ListingCreated') === '396b87e5fef710b0fb92ab0a1d2f82c41b7ad217eaec1ac1b7c0b53b3d4e8449'
+    }
+
+    /**
+     * A listing was created
+     */
+    get asV500(): {listingId: Uint8Array, listing: v500.Listing} {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A listing was created
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('Marketplace.ListingCreated') === '146bb778e90697fa64e871776cf4e4c4f9a89d9fb441caf7df5df7db5d90c7c1'
     }
@@ -4778,6 +4989,36 @@ export class MultiTokensCollectionMutatedEvent {
     /**
      * A collection was mutated
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('MultiTokens.CollectionMutated') === 'a90a2fd515cc4a58021e19a0a7743953e980f13558e4177cd5c2757c39958047'
+    }
+
+    /**
+     * A collection was mutated
+     */
+    get asMatrixEnjinV1004(): {collectionId: bigint, mutation: matrixEnjinV1004.DefaultCollectionMutation} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A [`Collection`](ep_multi_tokens::Collection) was mutated
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('MultiTokens.CollectionMutated') === 'd7b85f625e23a04082ca1038b142ad4c56b4ebeb4ab61685f39f6c00eddb78f1'
+    }
+
+    /**
+     * A [`Collection`](ep_multi_tokens::Collection) was mutated
+     */
+    get asV500(): {collectionId: bigint, mutation: v500.DefaultCollectionMutation} {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A collection was mutated
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('MultiTokens.CollectionMutated') === 'a90a2fd515cc4a58021e19a0a7743953e980f13558e4177cd5c2757c39958047'
     }
@@ -4807,15 +5048,15 @@ export class MultiTokensCollectionTransferCancelledEvent {
     /**
      * A pending collection transfer was cancelled
      */
-    get isV1004(): boolean {
+    get isMatrixEnjinV1004(): boolean {
         return this._chain.getEventHash('MultiTokens.CollectionTransferCancelled') === '057e325ebb04166081a2c8cd2cc1f2a50181d12678c5d261d3e70e3fe9252db3'
     }
 
     /**
      * A pending collection transfer was cancelled
      */
-    get asV1004(): {collectionId: bigint} {
-        assert(this.isV1004)
+    get asMatrixEnjinV1004(): {collectionId: bigint} {
+        assert(this.isMatrixEnjinV1004)
         return this._chain.decodeEvent(this.event)
     }
 }
@@ -4836,15 +5077,15 @@ export class MultiTokensCollectionTransferredEvent {
     /**
      * Collection ownership was transferred
      */
-    get isV1004(): boolean {
+    get isMatrixEnjinV1004(): boolean {
         return this._chain.getEventHash('MultiTokens.CollectionTransferred') === 'f73b69db711f6784b2ca3598344df4fe34eefd423690053a756e7b10750779b6'
     }
 
     /**
      * Collection ownership was transferred
      */
-    get asV1004(): {collectionId: bigint, newOwner: Uint8Array} {
-        assert(this.isV1004)
+    get asMatrixEnjinV1004(): {collectionId: bigint, newOwner: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
         return this._chain.decodeEvent(this.event)
     }
 }
@@ -4874,6 +5115,36 @@ export class MultiTokensCollectionUpdatedEvent {
      */
     get asMatrixEnjinV603(): {collectionId: bigint, value: (matrixEnjinV603.Collection | undefined)} {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Collection storage was set to `value`
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('MultiTokens.CollectionUpdated') === '15d7da4e4e5d88cd6310e9633d44a4c90028a02982649452643505d80d8f4a22'
+    }
+
+    /**
+     * Collection storage was set to `value`
+     */
+    get asMatrixEnjinV1004(): {collectionId: bigint, value: (matrixEnjinV1004.Collection | undefined)} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Collection storage was set to `value`
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('MultiTokens.CollectionUpdated') === '98bf9d540f024070954f2f94467d9e9b5cd79997861f988b682972dd34f2a757'
+    }
+
+    /**
+     * Collection storage was set to `value`
+     */
+    get asV500(): {collectionId: bigint, value: (v500.Collection | undefined)} {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6134,6 +6405,40 @@ export class PolkadotXcmAssetsClaimedEvent {
     /**
      * Some assets have been claimed from an asset trap
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.AssetsClaimed') === 'd00ea00073f2771dbd949ebc6ee42f5f3310603eab60e504d4562c1c65fd8a66'
+    }
+
+    /**
+     * Some assets have been claimed from an asset trap
+     */
+    get asMatrixEnjinV1004(): {hash: Uint8Array, origin: matrixEnjinV1004.V3MultiLocation, assets: matrixEnjinV1004.VersionedMultiAssets} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Some assets have been claimed from an asset trap
+     * 
+     * \[ hash, origin, assets \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.AssetsClaimed') === '31f92e7520747dddaef3e11b450bf3ace3a2df72f612e4237ea77faaffe7a16c'
+    }
+
+    /**
+     * Some assets have been claimed from an asset trap
+     * 
+     * \[ hash, origin, assets \]
+     */
+    get asV500(): [Uint8Array, v500.V3MultiLocation, v500.VersionedMultiAssets] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Some assets have been claimed from an asset trap
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.AssetsClaimed') === 'd00ea00073f2771dbd949ebc6ee42f5f3310603eab60e504d4562c1c65fd8a66'
     }
@@ -6176,6 +6481,40 @@ export class PolkadotXcmAssetsTrappedEvent {
      */
     get asMatrixEnjinV603(): [Uint8Array, matrixEnjinV603.V3MultiLocation, matrixEnjinV603.VersionedMultiAssets] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Some assets have been placed in an asset trap.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.AssetsTrapped') === 'd00ea00073f2771dbd949ebc6ee42f5f3310603eab60e504d4562c1c65fd8a66'
+    }
+
+    /**
+     * Some assets have been placed in an asset trap.
+     */
+    get asMatrixEnjinV1004(): {hash: Uint8Array, origin: matrixEnjinV1004.V3MultiLocation, assets: matrixEnjinV1004.VersionedMultiAssets} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Some assets have been placed in an asset trap.
+     * 
+     * \[ hash, origin, assets \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.AssetsTrapped') === '31f92e7520747dddaef3e11b450bf3ace3a2df72f612e4237ea77faaffe7a16c'
+    }
+
+    /**
+     * Some assets have been placed in an asset trap.
+     * 
+     * \[ hash, origin, assets \]
+     */
+    get asV500(): [Uint8Array, v500.V3MultiLocation, v500.VersionedMultiAssets] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6230,6 +6569,40 @@ export class PolkadotXcmAttemptedEvent {
     /**
      * Execution of an XCM message was attempted.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.Attempted') === '2422ddc668f3b01819427c84d6396493ee941332f71e202147480df98ef5a892'
+    }
+
+    /**
+     * Execution of an XCM message was attempted.
+     */
+    get asMatrixEnjinV1004(): {outcome: matrixEnjinV1004.V3Outcome} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Execution of an XCM message was attempted.
+     * 
+     * \[ outcome \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.Attempted') === '9f44833a3470bf6416377180f3875a05cfa0cf60651f18f6456d9e12cbab7095'
+    }
+
+    /**
+     * Execution of an XCM message was attempted.
+     * 
+     * \[ outcome \]
+     */
+    get asV500(): v500.V3Outcome {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Execution of an XCM message was attempted.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.Attempted') === '2422ddc668f3b01819427c84d6396493ee941332f71e202147480df98ef5a892'
     }
@@ -6272,6 +6645,40 @@ export class PolkadotXcmFeesPaidEvent {
      */
     get asMatrixEnjinV603(): [matrixEnjinV603.V3MultiLocation, matrixEnjinV603.V3MultiAsset[]] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Fees were paid from a location for an operation (often for using `SendXcm`).
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.FeesPaid') === 'ec234f3e15c9f2e59bc1a5758ab00b5eafe775b43e2250bc6610d7270394b3fc'
+    }
+
+    /**
+     * Fees were paid from a location for an operation (often for using `SendXcm`).
+     */
+    get asMatrixEnjinV1004(): {paying: matrixEnjinV1004.V3MultiLocation, fees: matrixEnjinV1004.V3MultiAsset[]} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Fees were paid from a location for an operation (often for using `SendXcm`).
+     * 
+     * \[ paying location, fees \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.FeesPaid') === '1e1917ab347c95883db9a398c08711e7ca09b4af3514b1b64b18534cb58a1f4e'
+    }
+
+    /**
+     * Fees were paid from a location for an operation (often for using `SendXcm`).
+     * 
+     * \[ paying location, fees \]
+     */
+    get asV500(): [v500.V3MultiLocation, v500.V3MultiAsset[]] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6324,6 +6731,48 @@ export class PolkadotXcmInvalidQuerierEvent {
      */
     get asMatrixEnjinV603(): [matrixEnjinV603.V3MultiLocation, bigint, matrixEnjinV603.V3MultiLocation, (matrixEnjinV603.V3MultiLocation | undefined)] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Expected query response has been received but the querier location of the response does
+     * not match the expected. The query remains registered for a later, valid, response to
+     * be received and acted upon.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.InvalidQuerier') === 'ba9e747bdc70472315571317b534c044d7863ad9a9c0a617fc7f3919adbb86f5'
+    }
+
+    /**
+     * Expected query response has been received but the querier location of the response does
+     * not match the expected. The query remains registered for a later, valid, response to
+     * be received and acted upon.
+     */
+    get asMatrixEnjinV1004(): {origin: matrixEnjinV1004.V3MultiLocation, queryId: bigint, expectedQuerier: matrixEnjinV1004.V3MultiLocation, maybeActualQuerier: (matrixEnjinV1004.V3MultiLocation | undefined)} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Expected query response has been received but the querier location of the response does
+     * not match the expected. The query remains registered for a later, valid, response to
+     * be received and acted upon.
+     * 
+     * \[ origin location, id, expected querier, maybe actual querier \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.InvalidQuerier') === '7c1090f283eee877a7601bfed0fd6fc3ca831930ac944924347ca8a2c6bd92e3'
+    }
+
+    /**
+     * Expected query response has been received but the querier location of the response does
+     * not match the expected. The query remains registered for a later, valid, response to
+     * be received and acted upon.
+     * 
+     * \[ origin location, id, expected querier, maybe actual querier \]
+     */
+    get asV500(): [v500.V3MultiLocation, bigint, v500.V3MultiLocation, (v500.V3MultiLocation | undefined)] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6400,6 +6849,64 @@ export class PolkadotXcmInvalidQuerierVersionEvent {
      * valid response will be dropped. Manual governance intervention is probably going to be
      * needed.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.InvalidQuerierVersion') === '63887bfe21639ef69d853381ad1891090e59ad256a542da55cbccec4f21ca0d6'
+    }
+
+    /**
+     * Expected query response has been received but the expected querier location placed in
+     * storage by this runtime previously cannot be decoded. The query remains registered.
+     * 
+     * This is unexpected (since a location placed in storage in a previously executing
+     * runtime should be readable prior to query timeout) and dangerous since the possibly
+     * valid response will be dropped. Manual governance intervention is probably going to be
+     * needed.
+     */
+    get asMatrixEnjinV1004(): {origin: matrixEnjinV1004.V3MultiLocation, queryId: bigint} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Expected query response has been received but the expected querier location placed in
+     * storage by this runtime previously cannot be decoded. The query remains registered.
+     * 
+     * This is unexpected (since a location placed in storage in a previously executing
+     * runtime should be readable prior to query timeout) and dangerous since the possibly
+     * valid response will be dropped. Manual governance intervention is probably going to be
+     * needed.
+     * 
+     * \[ origin location, id \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.InvalidQuerierVersion') === 'b8a7ace58226e359dd4ed6ffcc01266723020043e3fad0900eec6eb6f910a91e'
+    }
+
+    /**
+     * Expected query response has been received but the expected querier location placed in
+     * storage by this runtime previously cannot be decoded. The query remains registered.
+     * 
+     * This is unexpected (since a location placed in storage in a previously executing
+     * runtime should be readable prior to query timeout) and dangerous since the possibly
+     * valid response will be dropped. Manual governance intervention is probably going to be
+     * needed.
+     * 
+     * \[ origin location, id \]
+     */
+    get asV500(): [v500.V3MultiLocation, bigint] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Expected query response has been received but the expected querier location placed in
+     * storage by this runtime previously cannot be decoded. The query remains registered.
+     * 
+     * This is unexpected (since a location placed in storage in a previously executing
+     * runtime should be readable prior to query timeout) and dangerous since the possibly
+     * valid response will be dropped. Manual governance intervention is probably going to be
+     * needed.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.InvalidQuerierVersion') === '63887bfe21639ef69d853381ad1891090e59ad256a542da55cbccec4f21ca0d6'
     }
@@ -6452,6 +6959,48 @@ export class PolkadotXcmInvalidResponderEvent {
      */
     get asMatrixEnjinV603(): [matrixEnjinV603.V3MultiLocation, bigint, (matrixEnjinV603.V3MultiLocation | undefined)] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Expected query response has been received but the origin location of the response does
+     * not match that expected. The query remains registered for a later, valid, response to
+     * be received and acted upon.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.InvalidResponder') === 'b48adaaf18722ed367aa74c5b722dc32361abcc6314221eeeac63699129aa138'
+    }
+
+    /**
+     * Expected query response has been received but the origin location of the response does
+     * not match that expected. The query remains registered for a later, valid, response to
+     * be received and acted upon.
+     */
+    get asMatrixEnjinV1004(): {origin: matrixEnjinV1004.V3MultiLocation, queryId: bigint, expectedLocation: (matrixEnjinV1004.V3MultiLocation | undefined)} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Expected query response has been received but the origin location of the response does
+     * not match that expected. The query remains registered for a later, valid, response to
+     * be received and acted upon.
+     * 
+     * \[ origin location, id, expected location \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.InvalidResponder') === '3bf64d16d6fb5992c738643efff778414cc181e36377c106ab8130ca32b906de'
+    }
+
+    /**
+     * Expected query response has been received but the origin location of the response does
+     * not match that expected. The query remains registered for a later, valid, response to
+     * be received and acted upon.
+     * 
+     * \[ origin location, id, expected location \]
+     */
+    get asV500(): [v500.V3MultiLocation, bigint, (v500.V3MultiLocation | undefined)] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6528,6 +7077,64 @@ export class PolkadotXcmInvalidResponderVersionEvent {
      * valid response will be dropped. Manual governance intervention is probably going to be
      * needed.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.InvalidResponderVersion') === '63887bfe21639ef69d853381ad1891090e59ad256a542da55cbccec4f21ca0d6'
+    }
+
+    /**
+     * Expected query response has been received but the expected origin location placed in
+     * storage by this runtime previously cannot be decoded. The query remains registered.
+     * 
+     * This is unexpected (since a location placed in storage in a previously executing
+     * runtime should be readable prior to query timeout) and dangerous since the possibly
+     * valid response will be dropped. Manual governance intervention is probably going to be
+     * needed.
+     */
+    get asMatrixEnjinV1004(): {origin: matrixEnjinV1004.V3MultiLocation, queryId: bigint} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Expected query response has been received but the expected origin location placed in
+     * storage by this runtime previously cannot be decoded. The query remains registered.
+     * 
+     * This is unexpected (since a location placed in storage in a previously executing
+     * runtime should be readable prior to query timeout) and dangerous since the possibly
+     * valid response will be dropped. Manual governance intervention is probably going to be
+     * needed.
+     * 
+     * \[ origin location, id \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.InvalidResponderVersion') === 'b8a7ace58226e359dd4ed6ffcc01266723020043e3fad0900eec6eb6f910a91e'
+    }
+
+    /**
+     * Expected query response has been received but the expected origin location placed in
+     * storage by this runtime previously cannot be decoded. The query remains registered.
+     * 
+     * This is unexpected (since a location placed in storage in a previously executing
+     * runtime should be readable prior to query timeout) and dangerous since the possibly
+     * valid response will be dropped. Manual governance intervention is probably going to be
+     * needed.
+     * 
+     * \[ origin location, id \]
+     */
+    get asV500(): [v500.V3MultiLocation, bigint] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Expected query response has been received but the expected origin location placed in
+     * storage by this runtime previously cannot be decoded. The query remains registered.
+     * 
+     * This is unexpected (since a location placed in storage in a previously executing
+     * runtime should be readable prior to query timeout) and dangerous since the possibly
+     * valid response will be dropped. Manual governance intervention is probably going to be
+     * needed.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.InvalidResponderVersion') === '63887bfe21639ef69d853381ad1891090e59ad256a542da55cbccec4f21ca0d6'
     }
@@ -6578,6 +7185,44 @@ export class PolkadotXcmNotifiedEvent {
      */
     get asMatrixEnjinV603(): [bigint, number, number] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and query is removed. The registered notification has
+     * been dispatched and executed successfully.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.Notified') === 'b00126ed722ee8cd6f32c2c19b826e10724bb5df92afaa4e65b8fb03dc30ec5b'
+    }
+
+    /**
+     * Query response has been received and query is removed. The registered notification has
+     * been dispatched and executed successfully.
+     */
+    get asMatrixEnjinV1004(): {queryId: bigint, palletIndex: number, callIndex: number} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and query is removed. The registered notification has
+     * been dispatched and executed successfully.
+     * 
+     * \[ id, pallet index, call index \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.Notified') === '142af28353c3fd45d5839ca78e03f5b0850e0cd92892c66cfb4438a39b1200cf'
+    }
+
+    /**
+     * Query response has been received and query is removed. The registered notification has
+     * been dispatched and executed successfully.
+     * 
+     * \[ id, pallet index, call index \]
+     */
+    get asV500(): [bigint, number, number] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6640,6 +7285,48 @@ export class PolkadotXcmNotifyDecodeFailedEvent {
      * decoded into a `Call`; this might be due to dispatch function having a signature which
      * is not `(origin, QueryId, Response)`.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyDecodeFailed') === 'b00126ed722ee8cd6f32c2c19b826e10724bb5df92afaa4e65b8fb03dc30ec5b'
+    }
+
+    /**
+     * Query response has been received and query is removed. The dispatch was unable to be
+     * decoded into a `Call`; this might be due to dispatch function having a signature which
+     * is not `(origin, QueryId, Response)`.
+     */
+    get asMatrixEnjinV1004(): {queryId: bigint, palletIndex: number, callIndex: number} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and query is removed. The dispatch was unable to be
+     * decoded into a `Call`; this might be due to dispatch function having a signature which
+     * is not `(origin, QueryId, Response)`.
+     * 
+     * \[ id, pallet index, call index \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyDecodeFailed') === '142af28353c3fd45d5839ca78e03f5b0850e0cd92892c66cfb4438a39b1200cf'
+    }
+
+    /**
+     * Query response has been received and query is removed. The dispatch was unable to be
+     * decoded into a `Call`; this might be due to dispatch function having a signature which
+     * is not `(origin, QueryId, Response)`.
+     * 
+     * \[ id, pallet index, call index \]
+     */
+    get asV500(): [bigint, number, number] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and query is removed. The dispatch was unable to be
+     * decoded into a `Call`; this might be due to dispatch function having a signature which
+     * is not `(origin, QueryId, Response)`.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.NotifyDecodeFailed') === 'b00126ed722ee8cd6f32c2c19b826e10724bb5df92afaa4e65b8fb03dc30ec5b'
     }
@@ -6686,6 +7373,44 @@ export class PolkadotXcmNotifyDispatchErrorEvent {
      */
     get asMatrixEnjinV603(): [bigint, number, number] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and query is removed. There was a general error with
+     * dispatching the notification call.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyDispatchError') === 'b00126ed722ee8cd6f32c2c19b826e10724bb5df92afaa4e65b8fb03dc30ec5b'
+    }
+
+    /**
+     * Query response has been received and query is removed. There was a general error with
+     * dispatching the notification call.
+     */
+    get asMatrixEnjinV1004(): {queryId: bigint, palletIndex: number, callIndex: number} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and query is removed. There was a general error with
+     * dispatching the notification call.
+     * 
+     * \[ id, pallet index, call index \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyDispatchError') === '142af28353c3fd45d5839ca78e03f5b0850e0cd92892c66cfb4438a39b1200cf'
+    }
+
+    /**
+     * Query response has been received and query is removed. There was a general error with
+     * dispatching the notification call.
+     * 
+     * \[ id, pallet index, call index \]
+     */
+    get asV500(): [bigint, number, number] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6748,6 +7473,48 @@ export class PolkadotXcmNotifyOverweightEvent {
      * not be dispatched because the dispatch weight is greater than the maximum weight
      * originally budgeted by this runtime for the query result.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyOverweight') === 'e4fa835bcb3be2b76654c2ff5a50d92f182f262d583882f3df4011d77306af19'
+    }
+
+    /**
+     * Query response has been received and query is removed. The registered notification could
+     * not be dispatched because the dispatch weight is greater than the maximum weight
+     * originally budgeted by this runtime for the query result.
+     */
+    get asMatrixEnjinV1004(): {queryId: bigint, palletIndex: number, callIndex: number, actualWeight: matrixEnjinV1004.Weight, maxBudgetedWeight: matrixEnjinV1004.Weight} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and query is removed. The registered notification could
+     * not be dispatched because the dispatch weight is greater than the maximum weight
+     * originally budgeted by this runtime for the query result.
+     * 
+     * \[ id, pallet index, call index, actual weight, max budgeted weight \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyOverweight') === '98a4f2faff58b2444156c088dd1e1b3efb6f82323dcf1a7c67d4d2e01b621c0d'
+    }
+
+    /**
+     * Query response has been received and query is removed. The registered notification could
+     * not be dispatched because the dispatch weight is greater than the maximum weight
+     * originally budgeted by this runtime for the query result.
+     * 
+     * \[ id, pallet index, call index, actual weight, max budgeted weight \]
+     */
+    get asV500(): [bigint, number, number, v500.Weight, v500.Weight] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and query is removed. The registered notification could
+     * not be dispatched because the dispatch weight is greater than the maximum weight
+     * originally budgeted by this runtime for the query result.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.NotifyOverweight') === 'e4fa835bcb3be2b76654c2ff5a50d92f182f262d583882f3df4011d77306af19'
     }
@@ -6794,6 +7561,44 @@ export class PolkadotXcmNotifyTargetMigrationFailEvent {
      */
     get asMatrixEnjinV603(): [matrixEnjinV603.VersionedMultiLocation, bigint] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A given location which had a version change subscription was dropped owing to an error
+     * migrating the location to our new XCM format.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyTargetMigrationFail') === 'c4a59eca6ea5772ac1898a87fcc18a8cc29cf303fd03bdfee7b760a8c594e931'
+    }
+
+    /**
+     * A given location which had a version change subscription was dropped owing to an error
+     * migrating the location to our new XCM format.
+     */
+    get asMatrixEnjinV1004(): {location: matrixEnjinV1004.VersionedMultiLocation, queryId: bigint} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A given location which had a version change subscription was dropped owing to an error
+     * migrating the location to our new XCM format.
+     * 
+     * \[ location, query ID \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyTargetMigrationFail') === '8266fa3a9f901885a47ef275cb4d4053fa3a36033a40564944a565ca686bb27d'
+    }
+
+    /**
+     * A given location which had a version change subscription was dropped owing to an error
+     * migrating the location to our new XCM format.
+     * 
+     * \[ location, query ID \]
+     */
+    get asV500(): [v500.VersionedMultiLocation, bigint] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6853,6 +7658,44 @@ export class PolkadotXcmNotifyTargetSendFailEvent {
      * A given location which had a version change subscription was dropped owing to an error
      * sending the notification to it.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyTargetSendFail') === 'edc2d038c8c8204434d1519585109c7a45487752cfa11496a2ec47aae356c556'
+    }
+
+    /**
+     * A given location which had a version change subscription was dropped owing to an error
+     * sending the notification to it.
+     */
+    get asMatrixEnjinV1004(): {location: matrixEnjinV1004.V3MultiLocation, queryId: bigint, error: matrixEnjinV1004.V3Error} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A given location which had a version change subscription was dropped owing to an error
+     * sending the notification to it.
+     * 
+     * \[ location, query ID, error \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.NotifyTargetSendFail') === '26c26186934c8414941ac6565c3465399a31fd237e9f48bcc04601c00427c6fc'
+    }
+
+    /**
+     * A given location which had a version change subscription was dropped owing to an error
+     * sending the notification to it.
+     * 
+     * \[ location, query ID, error \]
+     */
+    get asV500(): [v500.V3MultiLocation, bigint, v500.V3Error] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A given location which had a version change subscription was dropped owing to an error
+     * sending the notification to it.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.NotifyTargetSendFail') === 'edc2d038c8c8204434d1519585109c7a45487752cfa11496a2ec47aae356c556'
     }
@@ -6898,6 +7741,44 @@ export class PolkadotXcmResponseReadyEvent {
      */
     get asMatrixEnjinV603(): [bigint, matrixEnjinV603.V3Response] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and is ready for taking with `take_response`. There is
+     * no registered notification call.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.ResponseReady') === 'bef8f7543dfaf827f16faeecf1ae77b01b3a27a17ca90af1a821e1cb820998fa'
+    }
+
+    /**
+     * Query response has been received and is ready for taking with `take_response`. There is
+     * no registered notification call.
+     */
+    get asMatrixEnjinV1004(): {queryId: bigint, response: matrixEnjinV1004.V3Response} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response has been received and is ready for taking with `take_response`. There is
+     * no registered notification call.
+     * 
+     * \[ id, response \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.ResponseReady') === '47e2336328ac2f8cffe468836a85755d501dbd3f9fe77c829ae5b5c5c33f5e9c'
+    }
+
+    /**
+     * Query response has been received and is ready for taking with `take_response`. There is
+     * no registered notification call.
+     * 
+     * \[ id, response \]
+     */
+    get asV500(): [bigint, v500.V3Response] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -6954,6 +7835,40 @@ export class PolkadotXcmResponseTakenEvent {
     /**
      * Received query response has been read and removed.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.ResponseTaken') === '204a390919b90a6aec91ba9059e3c9f8225c5a3b3ab8f97386879582bc302866'
+    }
+
+    /**
+     * Received query response has been read and removed.
+     */
+    get asMatrixEnjinV1004(): {queryId: bigint} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Received query response has been read and removed.
+     * 
+     * \[ id \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.ResponseTaken') === '0e1caef0df80727d2768bc480792261a4e7615b57b3e8182c7f664f06c96a08e'
+    }
+
+    /**
+     * Received query response has been read and removed.
+     * 
+     * \[ id \]
+     */
+    get asV500(): bigint {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Received query response has been read and removed.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.ResponseTaken') === '204a390919b90a6aec91ba9059e3c9f8225c5a3b3ab8f97386879582bc302866'
     }
@@ -6996,6 +7911,40 @@ export class PolkadotXcmSentEvent {
      */
     get asMatrixEnjinV603(): [matrixEnjinV603.V3MultiLocation, matrixEnjinV603.V3MultiLocation, matrixEnjinV603.V3Instruction[]] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A XCM message was sent.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.Sent') === '3d6c8fc6ff3b646a529f145a6f4b4ed06b59ba8e539eba47d55596e67e9b8a2a'
+    }
+
+    /**
+     * A XCM message was sent.
+     */
+    get asMatrixEnjinV1004(): {origin: matrixEnjinV1004.V3MultiLocation, destination: matrixEnjinV1004.V3MultiLocation, message: matrixEnjinV1004.V3Instruction[], messageId: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A XCM message was sent.
+     * 
+     * \[ origin, destination, message \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.Sent') === '8b71eb54444ef55962e90645805fd80535dfb12f572b41fdb1e093b7627b132d'
+    }
+
+    /**
+     * A XCM message was sent.
+     * 
+     * \[ origin, destination, message \]
+     */
+    get asV500(): [v500.V3MultiLocation, v500.V3MultiLocation, v500.V3Instruction[]] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -7053,6 +8002,44 @@ export class PolkadotXcmSupportedVersionChangedEvent {
      * The supported version of a location has been changed. This might be through an
      * automatic notification or a manual intervention.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.SupportedVersionChanged') === '33e59692e1de10110f93243ea23af786f87880b56e0ff4d528e142455c6b1bd9'
+    }
+
+    /**
+     * The supported version of a location has been changed. This might be through an
+     * automatic notification or a manual intervention.
+     */
+    get asMatrixEnjinV1004(): {location: matrixEnjinV1004.V3MultiLocation, version: number} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * The supported version of a location has been changed. This might be through an
+     * automatic notification or a manual intervention.
+     * 
+     * \[ location, XCM version \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.SupportedVersionChanged') === '9fb88093240cec5964187b6999557d2d8c4331f97b6c42c5664d30afbf50d7d4'
+    }
+
+    /**
+     * The supported version of a location has been changed. This might be through an
+     * automatic notification or a manual intervention.
+     * 
+     * \[ location, XCM version \]
+     */
+    get asV500(): [v500.V3MultiLocation, number] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * The supported version of a location has been changed. This might be through an
+     * automatic notification or a manual intervention.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.SupportedVersionChanged') === '33e59692e1de10110f93243ea23af786f87880b56e0ff4d528e142455c6b1bd9'
     }
@@ -7100,6 +8087,48 @@ export class PolkadotXcmUnexpectedResponseEvent {
      */
     get asMatrixEnjinV603(): [matrixEnjinV603.V3MultiLocation, bigint] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response received which does not match a registered query. This may be because a
+     * matching query was never registered, it may be because it is a duplicate response, or
+     * because the query timed out.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.UnexpectedResponse') === '63887bfe21639ef69d853381ad1891090e59ad256a542da55cbccec4f21ca0d6'
+    }
+
+    /**
+     * Query response received which does not match a registered query. This may be because a
+     * matching query was never registered, it may be because it is a duplicate response, or
+     * because the query timed out.
+     */
+    get asMatrixEnjinV1004(): {origin: matrixEnjinV1004.V3MultiLocation, queryId: bigint} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Query response received which does not match a registered query. This may be because a
+     * matching query was never registered, it may be because it is a duplicate response, or
+     * because the query timed out.
+     * 
+     * \[ origin location, id \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.UnexpectedResponse') === 'b8a7ace58226e359dd4ed6ffcc01266723020043e3fad0900eec6eb6f910a91e'
+    }
+
+    /**
+     * Query response received which does not match a registered query. This may be because a
+     * matching query was never registered, it may be because it is a duplicate response, or
+     * because the query timed out.
+     * 
+     * \[ origin location, id \]
+     */
+    get asV500(): [v500.V3MultiLocation, bigint] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -7164,6 +8193,48 @@ export class PolkadotXcmVersionChangeNotifiedEvent {
      * 
      * The cost of sending it (borne by the chain) is included.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.VersionChangeNotified') === 'a1bb23627cb55142abf0fb5e3eac2b509eb673050d10fc224a86ebe6199560f1'
+    }
+
+    /**
+     * An XCM version change notification message has been attempted to be sent.
+     * 
+     * The cost of sending it (borne by the chain) is included.
+     */
+    get asMatrixEnjinV1004(): {destination: matrixEnjinV1004.V3MultiLocation, result: number, cost: matrixEnjinV1004.V3MultiAsset[], messageId: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * An XCM version change notification message has been attempted to be sent.
+     * 
+     * The cost of sending it (borne by the chain) is included.
+     * 
+     * \[ destination, result, cost \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.VersionChangeNotified') === '3e656c216d68595d03592e62a70ad5d9d6a20b8a41bc0686433d36902cc47f08'
+    }
+
+    /**
+     * An XCM version change notification message has been attempted to be sent.
+     * 
+     * The cost of sending it (borne by the chain) is included.
+     * 
+     * \[ destination, result, cost \]
+     */
+    get asV500(): [v500.V3MultiLocation, number, v500.V3MultiAsset[]] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * An XCM version change notification message has been attempted to be sent.
+     * 
+     * The cost of sending it (borne by the chain) is included.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.VersionChangeNotified') === 'a1bb23627cb55142abf0fb5e3eac2b509eb673050d10fc224a86ebe6199560f1'
     }
@@ -7208,6 +8279,40 @@ export class PolkadotXcmVersionNotifyRequestedEvent {
      */
     get asMatrixEnjinV603(): [matrixEnjinV603.V3MultiLocation, matrixEnjinV603.V3MultiAsset[]] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * We have requested that a remote chain send us XCM version change notifications.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.VersionNotifyRequested') === 'a668a90f8752a9ee52d546887e2c4048efb092178a59d4bc13cbce46cb16351c'
+    }
+
+    /**
+     * We have requested that a remote chain send us XCM version change notifications.
+     */
+    get asMatrixEnjinV1004(): {destination: matrixEnjinV1004.V3MultiLocation, cost: matrixEnjinV1004.V3MultiAsset[], messageId: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * We have requested that a remote chain sends us XCM version change notifications.
+     * 
+     * \[ destination location, cost \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.VersionNotifyRequested') === '1e1917ab347c95883db9a398c08711e7ca09b4af3514b1b64b18534cb58a1f4e'
+    }
+
+    /**
+     * We have requested that a remote chain sends us XCM version change notifications.
+     * 
+     * \[ destination location, cost \]
+     */
+    get asV500(): [v500.V3MultiLocation, v500.V3MultiAsset[]] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -7265,6 +8370,44 @@ export class PolkadotXcmVersionNotifyStartedEvent {
      * A remote has requested XCM version change notification from us and we have honored it.
      * A version information message is sent to them and its cost is included.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.VersionNotifyStarted') === 'a668a90f8752a9ee52d546887e2c4048efb092178a59d4bc13cbce46cb16351c'
+    }
+
+    /**
+     * A remote has requested XCM version change notification from us and we have honored it.
+     * A version information message is sent to them and its cost is included.
+     */
+    get asMatrixEnjinV1004(): {destination: matrixEnjinV1004.V3MultiLocation, cost: matrixEnjinV1004.V3MultiAsset[], messageId: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A remote has requested XCM version change notification from us and we have honored it.
+     * A version information message is sent to them and its cost is included.
+     * 
+     * \[ destination location, cost \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.VersionNotifyStarted') === '1e1917ab347c95883db9a398c08711e7ca09b4af3514b1b64b18534cb58a1f4e'
+    }
+
+    /**
+     * A remote has requested XCM version change notification from us and we have honored it.
+     * A version information message is sent to them and its cost is included.
+     * 
+     * \[ destination location, cost \]
+     */
+    get asV500(): [v500.V3MultiLocation, v500.V3MultiAsset[]] {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * A remote has requested XCM version change notification from us and we have honored it.
+     * A version information message is sent to them and its cost is included.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('PolkadotXcm.VersionNotifyStarted') === 'a668a90f8752a9ee52d546887e2c4048efb092178a59d4bc13cbce46cb16351c'
     }
@@ -7308,6 +8451,40 @@ export class PolkadotXcmVersionNotifyUnrequestedEvent {
      */
     get asMatrixEnjinV603(): [matrixEnjinV603.V3MultiLocation, matrixEnjinV603.V3MultiAsset[]] {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * We have requested that a remote chain stops sending us XCM version change notifications.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.VersionNotifyUnrequested') === 'a668a90f8752a9ee52d546887e2c4048efb092178a59d4bc13cbce46cb16351c'
+    }
+
+    /**
+     * We have requested that a remote chain stops sending us XCM version change notifications.
+     */
+    get asMatrixEnjinV1004(): {destination: matrixEnjinV1004.V3MultiLocation, cost: matrixEnjinV1004.V3MultiAsset[], messageId: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * We have requested that a remote chain stops sending us XCM version change notifications.
+     * 
+     * \[ destination location, cost \]
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('PolkadotXcm.VersionNotifyUnrequested') === '1e1917ab347c95883db9a398c08711e7ca09b4af3514b1b64b18534cb58a1f4e'
+    }
+
+    /**
+     * We have requested that a remote chain stops sending us XCM version change notifications.
+     * 
+     * \[ destination location, cost \]
+     */
+    get asV500(): [v500.V3MultiLocation, v500.V3MultiAsset[]] {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -8996,6 +10173,36 @@ export class XcmpQueueBadFormatEvent {
     /**
      * Bad XCM format used.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('XcmpQueue.BadFormat') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
+    }
+
+    /**
+     * Bad XCM format used.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Bad XCM format used.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('XcmpQueue.BadFormat') === 'ccbb82ba01a4d742bdd34e545836a89f2c435428f6887f28ce1ecf0166419df1'
+    }
+
+    /**
+     * Bad XCM format used.
+     */
+    get asV500(): {messageHash: (Uint8Array | undefined)} {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Bad XCM format used.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('XcmpQueue.BadFormat') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
     }
@@ -9040,6 +10247,36 @@ export class XcmpQueueBadVersionEvent {
     /**
      * Bad XCM version used.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('XcmpQueue.BadVersion') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
+    }
+
+    /**
+     * Bad XCM version used.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Bad XCM version used.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('XcmpQueue.BadVersion') === 'ccbb82ba01a4d742bdd34e545836a89f2c435428f6887f28ce1ecf0166419df1'
+    }
+
+    /**
+     * Bad XCM version used.
+     */
+    get asV500(): {messageHash: (Uint8Array | undefined)} {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Bad XCM version used.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('XcmpQueue.BadVersion') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
     }
@@ -9078,6 +10315,36 @@ export class XcmpQueueFailEvent {
      */
     get asMatrixEnjinV603(): {messageHash: (Uint8Array | undefined), error: matrixEnjinV603.V3Error, weight: matrixEnjinV603.Weight} {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Some XCM failed.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('XcmpQueue.Fail') === '2209ec7a14ec537db1677015804c0dded9df5d9fb056a52cba4b1380577b2452'
+    }
+
+    /**
+     * Some XCM failed.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array, messageId: Uint8Array, error: matrixEnjinV1004.V3Error, weight: matrixEnjinV1004.Weight} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Some XCM failed.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('XcmpQueue.Fail') === 'add7b9cc246aa92449c7315a345573f307df55cd0b7e472982a726f0e1757cf0'
+    }
+
+    /**
+     * Some XCM failed.
+     */
+    get asV500(): {messageHash: (Uint8Array | undefined), error: v500.V3Error, weight: v500.Weight} {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
@@ -9186,6 +10453,36 @@ export class XcmpQueueSuccessEvent {
     /**
      * Some XCM was executed ok.
      */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('XcmpQueue.Success') === '1cf1b26d2d02d654cb89819f279d59db7cf00753f4896ecea4aaa7e793b58fe0'
+    }
+
+    /**
+     * Some XCM was executed ok.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array, messageId: Uint8Array, weight: matrixEnjinV1004.Weight} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Some XCM was executed ok.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('XcmpQueue.Success') === 'b84e46a58fb78d04c8748c4d236302e83484bfad9ec3579aa4e8f336f0efaca8'
+    }
+
+    /**
+     * Some XCM was executed ok.
+     */
+    get asV500(): {messageHash: (Uint8Array | undefined), weight: v500.Weight} {
+        assert(this.isV500)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * Some XCM was executed ok.
+     */
     get isV1004(): boolean {
         return this._chain.getEventHash('XcmpQueue.Success') === '1cf1b26d2d02d654cb89819f279d59db7cf00753f4896ecea4aaa7e793b58fe0'
     }
@@ -9224,6 +10521,36 @@ export class XcmpQueueXcmpMessageSentEvent {
      */
     get asMatrixEnjinV603(): {messageHash: (Uint8Array | undefined)} {
         assert(this.isMatrixEnjinV603)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * An HRMP message was sent to a sibling parachain.
+     */
+    get isMatrixEnjinV1004(): boolean {
+        return this._chain.getEventHash('XcmpQueue.XcmpMessageSent') === '7bb2cd4e16a7600863dc53c405c6fb0537d9c34c962c92233734a1807e9529c5'
+    }
+
+    /**
+     * An HRMP message was sent to a sibling parachain.
+     */
+    get asMatrixEnjinV1004(): {messageHash: Uint8Array} {
+        assert(this.isMatrixEnjinV1004)
+        return this._chain.decodeEvent(this.event)
+    }
+
+    /**
+     * An HRMP message was sent to a sibling parachain.
+     */
+    get isV500(): boolean {
+        return this._chain.getEventHash('XcmpQueue.XcmpMessageSent') === 'ccbb82ba01a4d742bdd34e545836a89f2c435428f6887f28ce1ecf0166419df1'
+    }
+
+    /**
+     * An HRMP message was sent to a sibling parachain.
+     */
+    get asV500(): {messageHash: (Uint8Array | undefined)} {
+        assert(this.isV500)
         return this._chain.decodeEvent(this.event)
     }
 
