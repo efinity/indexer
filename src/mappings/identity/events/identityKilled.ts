@@ -25,7 +25,12 @@ export async function identityKilled(
     const eventData = getEventData(ctx, item.event)
 
     const identity = await ctx.store.findOneOrFail(Identity, {
-        relations: { super: { info: true }, sub: true },
+        relations: {
+            super: { info: true },
+            sub: {
+                info: true,
+            },
+        },
         where: { id: u8aToHex(eventData.who) },
     })
     await ctx.store.delete(Registration, { id: u8aToHex(eventData.who) })
@@ -34,6 +39,7 @@ export async function identityKilled(
         identity.sub.map(async (sub) => {
             if (sub.isSub) return ctx.store.remove(sub)
             sub.super = null
+            sub.name = sub.info.display || sub.info.legal
             return ctx.store.save(sub)
         })
     )

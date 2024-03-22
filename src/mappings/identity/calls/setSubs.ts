@@ -38,12 +38,16 @@ export async function setSubs(
 
     const subIdentities = await ctx.store.find(Identity, {
         where: { super: { id: signer.id } },
+        relations: {
+            info: true,
+        },
     })
 
     await Promise.all(
         subIdentities.map(async (sub) => {
             if (sub.isSub) return ctx.store.remove(sub)
             sub.super = null
+            sub.name = sub.info.display || sub.info.legal
             return ctx.store.save(sub)
         })
     )
@@ -57,7 +61,7 @@ export async function setSubs(
 
             if (existing) {
                 existing.super = new Identity({ id: signer.id })
-
+                existing.name = sub[1].__kind !== 'None' ? u8aToString(sub[1].value) : null
                 return existing
             }
 

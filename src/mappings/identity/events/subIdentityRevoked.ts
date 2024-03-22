@@ -25,10 +25,16 @@ export async function subIdentityRevoked(
     const eventData = getEventData(ctx, item.event)
 
     const account = await getOrCreateAccount(ctx, eventData.sub)
-    const identity = await ctx.store.findOneByOrFail(Identity, { id: account.id })
+    const identity = await ctx.store.findOneOrFail(Identity, {
+        where: { id: account.id },
+        relations: {
+            info: true,
+        },
+    })
 
     if (!identity.isSub) {
         identity.super = null
+        identity.name = identity.info.display || identity.info.legal
         await ctx.store.save(identity)
     } else {
         await ctx.store.remove(identity)

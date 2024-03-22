@@ -81,6 +81,7 @@ export async function identitySet(
         id: account.id,
         account,
         isSub: false,
+        name: dataToValue(callData.info.display) || dataToValue(callData.info.legal),
         info: registeration,
         createdAt: new Date(block.timestamp),
     })
