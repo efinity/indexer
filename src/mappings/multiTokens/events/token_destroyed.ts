@@ -73,11 +73,10 @@ export async function tokenDestroyed(
         throwError(`[TokenDestroyed] We have not found token ${data.collectionId}-${data.tokenId}.`, 'fatal')
         return getEvent(item, data)
     }
-    // TODO: We are removing all events that are related to this token.
-    // We should only update the events that have relationship so it is null.
-    // await ctx.store.delete(Event, { tokenId: token.id })
+
     token.bestListing = null
     token.recentListing = null
+    token.lastSale = null
 
     await ctx.store.save(token)
 

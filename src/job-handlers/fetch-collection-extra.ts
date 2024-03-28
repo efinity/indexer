@@ -41,8 +41,8 @@ export default async (job: Queue.Job<JobData>, done: Queue.DoneCallback) => {
             website: _c.website,
         })
 
-        syncCollectionStats(collection.id)
-        computeTraits(collection.id)
+        syncCollectionStats(_c.collectionId)
+        computeTraits(_c.collectionId)
 
         await em.update(Collection, { id: _c.collectionId }, collection as any).catch((err) => {
             // eslint-disable-next-line no-console

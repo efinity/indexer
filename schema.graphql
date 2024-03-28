@@ -582,6 +582,7 @@ type Token @entity {
   traits: [TraitToken] @derivedFrom(field: "token")
   bestListing: Listing 
   recentListing: Listing
+  lastSale: ListingSale
 
   # Extras
   nonFungible: Boolean!

@@ -92,7 +92,8 @@ export async function auctionFinalized(
             listing,
             createdAt: new Date(block.timestamp),
         })
-        ctx.store.save(sale)
+        listing.makeAssetId.lastSale = sale
+        await ctx.store.save(sale)
     }
 
     listing.isActive = false
@@ -114,8 +115,8 @@ export async function auctionFinalized(
         if (bestListing) {
             listing.makeAssetId.bestListing = bestListing
         }
-        await ctx.store.save(listing.makeAssetId)
     }
+    await ctx.store.save(listing.makeAssetId)
 
     syncCollectionStats(listing.makeAssetId.collection.id)
 

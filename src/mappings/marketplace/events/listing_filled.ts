@@ -112,6 +112,8 @@ export async function listingFilled(
         createdAt: new Date(block.timestamp),
     })
 
+    listing.makeAssetId.lastSale = sale
+
     await Promise.all([ctx.store.save(listing), ctx.store.save(sale)])
 
     if (listing.makeAssetId.bestListing?.id === listing.id && data.amountRemaining === 0n) {
@@ -120,8 +122,9 @@ export async function listingFilled(
         if (bestListing) {
             listing.makeAssetId.bestListing = bestListing
         }
-        await ctx.store.save(listing.makeAssetId)
     }
+
+    await ctx.store.save(listing.makeAssetId)
 
     syncCollectionStats(listing.makeAssetId.collection.id)
 

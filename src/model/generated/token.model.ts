@@ -8,6 +8,7 @@ import {TokenAccount} from "./tokenAccount.model"
 import {Attribute} from "./attribute.model"
 import {Listing} from "./listing.model"
 import {TraitToken} from "./traitToken.model"
+import {ListingSale} from "./listingSale.model"
 import {Metadata} from "./_metadata"
 
 @Entity_()
@@ -79,6 +80,10 @@ export class Token {
     @Index_()
     @ManyToOne_(() => Listing, {nullable: true})
     recentListing!: Listing | undefined | null
+
+    @Index_()
+    @ManyToOne_(() => ListingSale, {nullable: true})
+    lastSale!: ListingSale | undefined | null
 
     @Column_("bool", {nullable: false})
     nonFungible!: boolean
