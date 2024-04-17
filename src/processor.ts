@@ -24,6 +24,8 @@ Sentry.init({
     integrations: [rewriteFramesIntegration()],
 })
 
+//Extra comment
+
 const eventOptions = {
     data: {
         event: {
