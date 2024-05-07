@@ -18,6 +18,7 @@ import { Event } from '../../../types/generated/support'
 import { computeTraits } from '../../../jobs/compute-traits'
 import { getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../jobs/collection-stats'
+import { Sns } from '../../../common/sns'
 
 interface EventData {
     collectionId: bigint
@@ -127,6 +128,22 @@ export async function minted(
 
     computeTraits(data.collectionId.toString())
     syncCollectionStats(data.collectionId.toString())
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                collectionId: data.collectionId,
+                tokenId: data.tokenId,
+                token: `${data.collectionId}-${data.tokenId}`,
+                issuer: u8aToHex(data.issuer),
+                recipient: u8aToHex(data.recipient),
+                amount: data.amount,
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
+    }
 
     return getEvent(item, data, token)
 }

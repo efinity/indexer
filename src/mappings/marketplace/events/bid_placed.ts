@@ -19,6 +19,7 @@ import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getBestListing, getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../jobs/collection-stats'
+import { Sns } from '../../../common/sns'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MarketplaceBidPlacedEvent(ctx, event)
@@ -109,6 +110,18 @@ export async function bidPlaced(
     }
 
     syncCollectionStats(listing.makeAssetId.collection.id)
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                listing: listing.id,
+                bid: `${listing.id}-${u8aToHex(data.bid.bidder)}-${data.bid.price}`,
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
+    }
 
     return getEvent(item, data, listing, account)
 }

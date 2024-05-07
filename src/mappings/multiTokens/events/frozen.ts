@@ -17,6 +17,7 @@ import {
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { isTokenFrozen } from './token_created'
+import { Sns } from '../../../common/sns'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MultiTokensFrozenEvent(ctx, event)
@@ -162,6 +163,18 @@ export async function frozen(
 
         collection.transferPolicy = new TransferPolicy({ isFrozen: true })
         await ctx.store.save(collection)
+    }
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                collectionId: data.collectionId.toString(),
+                tokenId: data.tokenId ? `${data.collectionId}-${data.tokenId}` : null,
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
     }
 
     return getEvent(item, data)

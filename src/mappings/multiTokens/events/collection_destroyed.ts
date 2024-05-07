@@ -14,6 +14,7 @@ import {
 } from '../../../model'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
+import { Sns } from '../../../common/sns'
 
 interface EventData {
     collectionId: bigint
@@ -64,6 +65,18 @@ export async function collectionDestroyed(
     ])
 
     await ctx.store.delete(Collection, { id: collectionId })
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                collectionId: data.collectionId,
+                caller: u8aToHex(data.caller),
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
+    }
 
     return getEvent(item, data)
 }

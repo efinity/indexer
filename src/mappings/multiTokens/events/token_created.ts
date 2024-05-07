@@ -35,6 +35,7 @@ import { getOrCreateAccount } from '../../util/entities'
 import { MultiTokensBatchMintCall, MultiTokensForceMintCall, MultiTokensMintCall } from '../../../types/generated/calls'
 import { processMetadata } from '../../../jobs/process-metadata'
 import { MultiTokensTokensStorage } from '../../../types/generated/storage'
+import { Sns } from '../../../common/sns'
 
 export function getCapType(cap: TokenCap) {
     if (cap.__kind === CapType.Supply) {
@@ -527,6 +528,20 @@ export async function tokenCreated(
 
         await ctx.store.save(Token, token as any)
         processMetadata(token.id, 'token')
+    }
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                collectionId: eventData.collectionId,
+                tokenId: eventData.tokenId,
+                issuer: u8aToHex(eventData.issuer),
+                initialSupply: eventData.initialSupply,
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
     }
 
     return getEvent(item, eventData)

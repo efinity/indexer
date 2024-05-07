@@ -8,6 +8,7 @@ import { Collection, Event as EventModel, Extrinsic, MultiTokensCollectionTransf
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
+import { Sns } from '../../../common/sns'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MultiTokensCollectionTransferredEvent(ctx, event)
@@ -61,6 +62,18 @@ export async function collectionTransferred(
     collection.owner = await getOrCreateAccount(ctx, data.owner)
 
     await ctx.store.save(collection)
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                collectionId: data.collectionId,
+                owner: u8aToHex(data.owner),
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
+    }
 
     return getEvent(item, data)
 }

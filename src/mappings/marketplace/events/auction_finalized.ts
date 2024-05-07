@@ -18,6 +18,7 @@ import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getBestListing } from '../../util/entities'
 import { syncCollectionStats } from '../../../jobs/collection-stats'
+import { Sns } from '../../../common/sns'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MarketplaceAuctionFinalizedEvent(ctx, event)
@@ -119,6 +120,20 @@ export async function auctionFinalized(
     await ctx.store.save(listing.makeAssetId)
 
     syncCollectionStats(listing.makeAssetId.collection.id)
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                listing: listing.id,
+                winningBid: data.winningBid ? `${listing.id}-${u8aToHex(data.winningBid.bidder)}-${data.winningBid.price}` : null,
+                protocolFee: data.protocolFee,
+                royalty: data.royalty,
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
+    }
 
     return getEvent(item, data, listing)
 }

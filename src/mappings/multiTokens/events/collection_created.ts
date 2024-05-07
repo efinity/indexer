@@ -29,6 +29,7 @@ import { getOrCreateAccount } from '../../util/entities'
 import { DefaultRoyalty } from '../../../types/generated/v500'
 import { MultiTokensCollectionsStorage } from '../../../types/generated/storage'
 import { AssetId } from '../../../types/generated/matrixEnjinV603'
+import { Sns } from '../../../common/sns'
 
 interface EventData {
     collectionId: bigint
@@ -443,6 +444,18 @@ export async function collectionCreated(
         .map((rc: any) => ctx.store.save(RoyaltyCurrency, rc as any))
 
     await Promise.all(royaltyPromises)
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                collectionId: eventData.collectionId,
+                owner: u8aToHex(eventData.owner),
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
+    }
 
     return getEvent(item, eventData)
 }

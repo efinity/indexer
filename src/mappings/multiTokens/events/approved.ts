@@ -15,6 +15,7 @@ import { encodeId } from '../../../common/tools'
 import { Event } from '../../../types/generated/support'
 import { MultiTokensApprovedEvent } from '../../../types/generated/events'
 import { CommonContext } from '../../types/contexts'
+import { Sns } from '../../../common/sns'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MultiTokensApprovedEvent(ctx, event)
@@ -102,6 +103,22 @@ export async function approved(
         collectionAccount.approvals = approvals
         collectionAccount.updatedAt = new Date(block.timestamp)
         await ctx.store.save(collectionAccount)
+    }
+
+    if (item.event.extrinsic) {
+        await Sns.getInstance().send({
+            id: item.event.id,
+            name: item.event.name,
+            body: {
+                collectionId: data.collectionId,
+                tokenId: data.tokenId,
+                owner: u8aToHex(data.owner),
+                operator: u8aToHex(data.operator),
+                amount: data.amount,
+                expiration: data.expiration,
+                extrinsic: item.event.extrinsic.id,
+            },
+        })
     }
 
     return getEvent(item, data)
