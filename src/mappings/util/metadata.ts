@@ -24,8 +24,15 @@ export async function fetchMetadata(url: string, job: Queue.Job) {
         maxRedirects: url.startsWith('https://platform.production.enjinusercontent.com/') ? 3 : 1,
         httpsAgent: new https.Agent({ keepAlive: true, rejectUnauthorized: false }),
     })
+
+    let finalUrl = url.replace('ipfs://', 'https://ipfs.io/ipfs/')
+    if (job.attemptsMade > 1) {
+        finalUrl = url.replace('ipfs://', 'https://cloudflare-ipfs.com/ipfs/')
+        job.log(`Fetching metadata from ${finalUrl} attempt ${job.attemptsMade}`)
+    }
+
     try {
-        const { status, data } = await api.get(url.replace('ipfs://', 'https://ipfs.io/ipfs/'))
+        const { status, data } = await api.get(finalUrl)
         if (status < 400) {
             return data
         }
