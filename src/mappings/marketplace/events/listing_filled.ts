@@ -134,7 +134,7 @@ export async function listingFilled(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing: listing.id,
+                listing,
                 buyer: u8aToHex(data.buyer),
                 amountFilled: data.amountFilled,
                 amountRemaining: data.amountRemaining,

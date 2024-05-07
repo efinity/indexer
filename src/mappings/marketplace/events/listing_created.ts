@@ -163,7 +163,7 @@ export async function listingCreated(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing: listing.id,
+                listing,
                 extrinsic: item.event.extrinsic.id,
             },
         })

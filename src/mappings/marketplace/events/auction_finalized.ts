@@ -126,7 +126,7 @@ export async function auctionFinalized(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing: listing.id,
+                listing,
                 winningBid: data.winningBid ? `${listing.id}-${u8aToHex(data.winningBid.bidder)}-${data.winningBid.price}` : null,
                 protocolFee: data.protocolFee,
                 royalty: data.royalty,

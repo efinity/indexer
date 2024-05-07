@@ -116,7 +116,7 @@ export async function bidPlaced(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing: listing.id,
+                listing,
                 bid: `${listing.id}-${u8aToHex(data.bid.bidder)}-${data.bid.price}`,
                 extrinsic: item.event.extrinsic.id,
             },

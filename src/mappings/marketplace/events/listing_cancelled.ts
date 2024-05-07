@@ -102,7 +102,7 @@ export async function listingCancelled(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing: listing.id,
+                listing,
                 extrinsic: item.event.extrinsic.id,
             },
         })
