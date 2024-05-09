@@ -68,7 +68,7 @@ export async function bidPlaced(
 
     const listingId = Buffer.from(data.listingId).toString('hex')
     const [listing, account] = await Promise.all([
-        ctx.store.findOne<Listing>(Listing, {
+        ctx.store.findOne(Listing, {
             where: { id: listingId },
             relations: {
                 makeAssetId: {
@@ -116,8 +116,23 @@ export async function bidPlaced(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing,
-                bid: `${listing.id}-${u8aToHex(data.bid.bidder)}-${data.bid.price}`,
+                listing: {
+                    seller: {
+                        id: listing.seller.id,
+                    },
+                    id: listing.id,
+                    highestPrice: listing.highestPrice.toString(),
+                    amount: listing.amount.toString(),
+                    price: listing.price.toString(),
+                    data: listing.data.toJSON(),
+                },
+                bid: {
+                    id: bid.id,
+                    price: bid.price.toString(),
+                    bidder: {
+                        id: bid.bidder.id,
+                    },
+                },
                 extrinsic: item.event.extrinsic.id,
             },
         })

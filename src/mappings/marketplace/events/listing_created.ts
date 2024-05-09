@@ -163,7 +163,17 @@ export async function listingCreated(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing,
+                listing: {
+                    id: listing.id,
+                    price: listing.price.toString(),
+                    amount: listing.amount.toString(),
+                    highestPrice: listing.highestPrice.toString(),
+                    seller: {
+                        id: listing.seller.id,
+                    },
+                    data: listing.data.toJSON(),
+                    state: listing.state.toJSON(),
+                },
                 extrinsic: item.event.extrinsic.id,
             },
         })

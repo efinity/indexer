@@ -134,8 +134,18 @@ export async function listingFilled(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing,
-                buyer: u8aToHex(data.buyer),
+                listing: {
+                    id: listing.id,
+                    price: listing.price.toString(),
+                    amount: listing.amount.toString(),
+                    highestPrice: listing.highestPrice.toString(),
+                    seller: {
+                        id: listing.seller.id,
+                    },
+                    data: listing.data.toJSON(),
+                    state: listing.state.toJSON(),
+                },
+                buyer: { id: u8aToHex(data.buyer) },
                 amountFilled: data.amountFilled,
                 amountRemaining: data.amountRemaining,
                 protocolFee: data.protocolFee,

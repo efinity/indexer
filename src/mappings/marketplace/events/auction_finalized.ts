@@ -126,8 +126,24 @@ export async function auctionFinalized(
             id: item.event.id,
             name: item.event.name,
             body: {
-                listing,
-                winningBid: data.winningBid ? `${listing.id}-${u8aToHex(data.winningBid.bidder)}-${data.winningBid.price}` : null,
+                listing: {
+                    seller: {
+                        id: listing.seller.id,
+                    },
+                    id: listing.id,
+                    highestPrice: listing.highestPrice.toString(),
+                    amount: listing.amount.toString(),
+                    price: listing.price.toString(),
+                    data: listing.data.toJSON(),
+                },
+                winningBid: data.winningBid
+                    ? {
+                          bidder: {
+                              id: u8aToHex(data.winningBid.bidder),
+                          },
+                          price: data.winningBid.price.toString(),
+                      }
+                    : null,
                 protocolFee: data.protocolFee,
                 royalty: data.royalty,
                 extrinsic: item.event.extrinsic.id,
