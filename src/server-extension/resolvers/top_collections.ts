@@ -91,6 +91,7 @@ export class TopCollectionResolver {
         @Arg('timeFrame', () => Timeframe) timeFrame: Timeframe,
         @Arg('orderBy', () => TopCollectionOrderBy) orderBy: TopCollectionOrderBy,
         @Arg('category', () => [String], { nullable: true, defaultValue: [] }) category: string[],
+        @Arg('query', { nullable: true, description: 'Search by category' }) query: string,
         @Arg('order', () => Order) order: Order,
         @Arg('offset', () => Int) offset: number = 0,
         @Arg('limit', () => Int) limit: number = 10
@@ -136,6 +137,10 @@ export class TopCollectionResolver {
 
                 if (category.length > 0) {
                     inBuilder.andWhere('collection.category IN (:...category)', { category })
+                }
+
+                if (query) {
+                    inBuilder.andWhere('collection.category ILIKE :query', { query: `%${query}%` })
                 }
 
                 inBuilder
