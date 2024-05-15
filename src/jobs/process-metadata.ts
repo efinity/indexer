@@ -5,7 +5,7 @@ export type JobData = { resourceId: string; type: 'token' | 'collection'; force:
 
 export const metadataQueue = new Queue<JobData>('metadataQueue', {
     defaultJobOptions: {
-        delay: 100,
+        delay: 1000,
         attempts: 3,
         backoff: {
             type: 'exponential',

@@ -527,7 +527,6 @@ export async function tokenCreated(
         })
 
         await ctx.store.save(Token, token as any)
-        processMetadata(token.id, 'token')
     }
 
     if (item.event.extrinsic) {
