@@ -67,7 +67,7 @@ export async function bidPlaced(
     if (!data) return undefined
 
     const listingId = Buffer.from(data.listingId).toString('hex')
-    const [listing, account] = await Promise.all([
+    const [listing, account, lastBid] = await Promise.all([
         ctx.store.findOne(Listing, {
             where: { id: listingId },
             relations: {
@@ -79,6 +79,7 @@ export async function bidPlaced(
             },
         }),
         getOrCreateAccount(ctx, data.bid.bidder),
+        ctx.store.findOne(Bid, { where: { listing: { id: listingId } }, order: { createdAt: 'DESC' } }),
     ])
 
     if (!listing || !listing.makeAssetId) return undefined
@@ -127,6 +128,16 @@ export async function bidPlaced(
                     price: listing.price.toString(),
                     data: listing.data.toJSON(),
                 },
+
+                lastBid: lastBid
+                    ? {
+                          id: lastBid.id,
+                          price: lastBid.price.toString(),
+                          bidder: {
+                              id: lastBid.bidder.id,
+                          },
+                      }
+                    : null,
                 bid: {
                     id: bid.id,
                     price: bid.price.toString(),
