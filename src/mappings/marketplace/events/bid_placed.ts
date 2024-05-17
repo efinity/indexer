@@ -79,7 +79,13 @@ export async function bidPlaced(
             },
         }),
         getOrCreateAccount(ctx, data.bid.bidder),
-        ctx.store.findOne(Bid, { where: { listing: { id: listingId } }, order: { createdAt: 'DESC' } }),
+        ctx.store.findOne(Bid, {
+            where: { listing: { id: listingId } },
+            relations: {
+                bidder: true,
+            },
+            order: { createdAt: 'DESC' },
+        }),
     ])
 
     if (!listing || !listing.makeAssetId) return undefined
@@ -128,7 +134,6 @@ export async function bidPlaced(
                     price: listing.price.toString(),
                     data: listing.data.toJSON(),
                 },
-
                 lastBid: lastBid
                     ? {
                           id: lastBid.id,
