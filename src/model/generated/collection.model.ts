@@ -86,6 +86,9 @@ export class Collection {
     @Column_("text", {nullable: true})
     category!: string | undefined | null
 
+    @Column_("timestamp with time zone", {nullable: true})
+    verifiedAt!: Date | undefined | null
+
     @Column_("bool", {nullable: false})
     hidden!: boolean
 

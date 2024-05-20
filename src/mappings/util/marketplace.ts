@@ -18,6 +18,7 @@ const collectionsQuery = `query CollectionsQuery($ids: [String!]) {
       hiddenForLegalReasons
       category
       featured
+      verifiedAt
       twitter
       discord
       instagram
@@ -41,6 +42,7 @@ type CollectionExtra = {
     hiddenForLegalReasons: boolean
     category: string | null
     featured: boolean
+    verifiedAt: string | null
     twitter: string | null
     discord: string | null
     instagram: string | null

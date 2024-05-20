@@ -30,8 +30,8 @@ export default async (job: Queue.Job<JobData>, done: Queue.DoneCallback) => {
         collection.flags = new CollectionFlags({
             featured: _c.featured,
             hiddenForLegalReasons: _c.hiddenForLegalReasons,
-            verified: false,
         })
+        collection.verifiedAt = _c.verifiedAt ? new Date(_c.verifiedAt) : null
         collection.socials = new CollectionSocials({
             discord: _c.discord,
             twitter: _c.twitter,

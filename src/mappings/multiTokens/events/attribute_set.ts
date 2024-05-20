@@ -94,8 +94,8 @@ export async function attributeSet(
             flags: new CollectionFlags({
                 featured: false,
                 hiddenForLegalReasons: false,
-                verified: false,
             }),
+            verifiedAt: null,
             socials: new CollectionSocials({
                 discord: null,
                 twitter: null,
