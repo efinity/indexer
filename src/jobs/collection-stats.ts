@@ -7,7 +7,7 @@ import { computeTraits } from './compute-traits'
 export type JobData = { collectionId: string }
 
 export const collectionStatsQueue = new Queue<JobData>('collectionStatsQueue', {
-    defaultJobOptions: { delay: 1000, attempts: 2, removeOnComplete: true },
+    defaultJobOptions: { delay: 2000, attempts: 2, removeOnComplete: true },
     redis: redisConfig,
     settings: {
         maxStalledCount: 3,
