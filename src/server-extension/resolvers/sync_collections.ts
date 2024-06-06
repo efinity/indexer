@@ -4,7 +4,7 @@ import 'reflect-metadata'
 import { EntityManager, IsNull } from 'typeorm'
 import { syncAllCollections } from '../../jobs/collection-stats'
 import { Token } from '../../model'
-import { processMetadata } from 'src/jobs/process-metadata'
+import { processMetadata } from '../../jobs/process-metadata'
 
 const mins10 = 1000 * 60 * 10
 let rateLimit: number | null = null
