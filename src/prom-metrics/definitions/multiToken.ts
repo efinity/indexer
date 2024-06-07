@@ -72,7 +72,7 @@ export default async () => {
     ] = await Promise.all([
         em.query('SELECT COUNT(DISTINCT account_id) FROM token_account where total_balance::numeric > 0'),
         em.query('SELECT COUNT(*) as count FROM collection'),
-        em.query('SELECT SUM(supply) FROM token'),
+        em.query('SELECT COUNT(*) FROM token'),
         em.query('SELECT AVG(holders) FROM (SELECT COUNT(id) as holders FROM collection_account GROUP BY collection_id)'),
         em.query('SELECT AVG(tokens) FROM (SELECT COUNT(id) as tokens FROM token GROUP BY collection_id)'),
         em.query('SELECT AVG(tokens) FROM (SELECT COUNT(id) as tokens FROM token_account GROUP BY account_id)'),
@@ -81,7 +81,7 @@ export default async () => {
 
     indexer_multitokens_unique_holders_total.set(Number(uniqueHolders[0].count))
     indexer_multitokens_collections_total.set(Number(collectionsTotal[0].count))
-    indexer_multitokens_unique_tokens_total.set(Number(tokensTotal[0].sum))
+    indexer_multitokens_unique_tokens_total.set(Number(tokensTotal[0].count))
     indexer_multitokens_collection_holders_avg.set(parseInt(collectionHoldersAvg[0].avg, 10))
     indexer_multitokens_collection_tokens_avg.set(parseInt(collectionTokensAvg[0].avg, 10))
     indexer_multitokens_account_tokens_avg.set(parseInt(accountTokensAvg[0].avg, 10))
