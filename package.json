@@ -15,7 +15,7 @@
     "fix": "eslint src --ext .ts,.js --fix"
   },
   "dependencies": {
-    "@aws-sdk/client-sns": "^3.620.1",
+    "@aws-sdk/client-sns": "^3.624.0",
     "@bull-board/api": "^5.21.1",
     "@bull-board/express": "^5.21.1",
     "@polkadot/api": "^12.2.2",
