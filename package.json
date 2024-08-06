@@ -48,7 +48,7 @@
     "web3-validator": "^2.0.6"
   },
   "devDependencies": {
-    "@polkadot/typegen": "^12.2.2",
+    "@polkadot/typegen": "^12.3.1",
     "@subsquid/substrate-metadata-explorer": "^3.1.2",
     "@subsquid/substrate-typegen": "^8.0.2",
     "@subsquid/typeorm-codegen": "^2.0.2",
