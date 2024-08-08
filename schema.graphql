@@ -738,8 +738,7 @@ type CounterOffer {
 }
 
 type OfferState {
-   listingType: ListingType!
-  counter: CounterOffer
+  counterOfferCount: Int!
 }
 
 type Bid @entity {

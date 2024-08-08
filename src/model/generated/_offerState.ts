@@ -1,43 +1,30 @@
 import assert from "assert"
 import * as marshal from "./marshal"
-import {ListingType} from "./_listingType"
-import {CounterOffer} from "./_counterOffer"
 
 export class OfferState {
     public readonly isTypeOf = 'OfferState'
-    private _listingType!: ListingType
-    private _counter!: CounterOffer | undefined | null
+    private _counterOfferCount!: number
 
     constructor(props?: Partial<Omit<OfferState, 'toJSON'>>, json?: any) {
         Object.assign(this, props)
         if (json != null) {
-            this._listingType = marshal.enumFromJson(json.listingType, ListingType)
-            this._counter = json.counter == null ? undefined : new CounterOffer(undefined, json.counter)
+            this._counterOfferCount = marshal.int.fromJSON(json.counterOfferCount)
         }
     }
 
-    get listingType(): ListingType {
-        assert(this._listingType != null, 'uninitialized access')
-        return this._listingType
+    get counterOfferCount(): number {
+        assert(this._counterOfferCount != null, 'uninitialized access')
+        return this._counterOfferCount
     }
 
-    set listingType(value: ListingType) {
-        this._listingType = value
-    }
-
-    get counter(): CounterOffer | undefined | null {
-        return this._counter
-    }
-
-    set counter(value: CounterOffer | undefined | null) {
-        this._counter = value
+    set counterOfferCount(value: number) {
+        this._counterOfferCount = value
     }
 
     toJSON(): object {
         return {
             isTypeOf: this.isTypeOf,
-            listingType: this.listingType,
-            counter: this.counter == null ? undefined : this.counter.toJSON(),
+            counterOfferCount: this.counterOfferCount,
         }
     }
 }
