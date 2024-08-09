@@ -2,6 +2,7 @@ import {sts, Block, Bytes, Option, Result, EventType, RuntimeCtx} from '../suppo
 import * as matrixEnjinV603 from '../matrixEnjinV603'
 import * as matrixEnjinV1005 from '../matrixEnjinV1005'
 import * as v1010 from '../v1010'
+import * as v1011 from '../v1011'
 
 export const listingCreated =  {
     name: 'Marketplace.ListingCreated',
@@ -35,6 +36,22 @@ export const listingCreated =  {
              * The listing
              */
             listing: v1010.Listing,
+        })
+    ),
+    /**
+     * A listing was created
+     */
+    v1011: new EventType(
+        'Marketplace.ListingCreated',
+        sts.struct({
+            /**
+             * Id for the listing
+             */
+            listingId: v1011.H256,
+            /**
+             * The listing
+             */
+            listing: v1011.Listing,
         })
     ),
 }
@@ -71,6 +88,42 @@ export const listingFilled =  {
              * account that filled the listing
              */
             buyer: matrixEnjinV603.AccountId32,
+            /**
+             * The amount that was filled
+             */
+            amountFilled: sts.bigint(),
+            /**
+             * Amount remaining to be filled
+             */
+            amountRemaining: sts.bigint(),
+            /**
+             * Amount paid as protocol fee
+             */
+            protocolFee: sts.bigint(),
+            /**
+             * Amount that went to royalties
+             */
+            royalty: sts.bigint(),
+        })
+    ),
+    /**
+     * A listing was filled or partially filled
+     */
+    v1011: new EventType(
+        'Marketplace.ListingFilled',
+        sts.struct({
+            /**
+             * ID of the listing
+             */
+            listingId: v1011.H256,
+            /**
+             * account that filled the listing
+             */
+            buyer: v1011.AccountId32,
+            /**
+             * The price it was filled with
+             */
+            price: sts.bigint(),
             /**
              * The amount that was filled
              */
@@ -205,6 +258,22 @@ export const counterOfferPlaced =  {
             counterOffer: v1010.CounterOffer,
         })
     ),
+    /**
+     * A counter offer was placed on a listing
+     */
+    v1011: new EventType(
+        'Marketplace.CounterOfferPlaced',
+        sts.struct({
+            /**
+             * Id of the listing
+             */
+            listingId: v1011.H256,
+            /**
+             * The counter offer
+             */
+            counterOffer: v1011.CounterOffer,
+        })
+    ),
 }
 
 export const counterOfferAnswered =  {
@@ -225,6 +294,26 @@ export const counterOfferAnswered =  {
             accepted: sts.boolean(),
         })
     ),
+    /**
+     * A response was issued for a counter offer
+     */
+    v1011: new EventType(
+        'Marketplace.CounterOfferAnswered',
+        sts.struct({
+            /**
+             * Id of the listing
+             */
+            listingId: v1011.H256,
+            /**
+             * The account that created the counter offer
+             */
+            creator: v1011.AccountId32,
+            /**
+             * The response to the counter offer
+             */
+            response: v1011.CounterOfferResponse,
+        })
+    ),
 }
 
 export const migrationStep =  {
@@ -243,6 +332,26 @@ export const migrationStep =  {
              * The migration phase
              */
             phase: sts.number(),
+        })
+    ),
+}
+
+export const counterOfferRemoved =  {
+    name: 'Marketplace.CounterOfferRemoved',
+    /**
+     * A counter offer was removed
+     */
+    v1011: new EventType(
+        'Marketplace.CounterOfferRemoved',
+        sts.struct({
+            /**
+             * Id of the listing
+             */
+            listingId: v1011.H256,
+            /**
+             * The account that created the counter offer
+             */
+            creator: v1011.AccountId32,
         })
     ),
 }

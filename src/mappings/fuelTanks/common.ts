@@ -7,6 +7,7 @@ import { DispatchRuleDescriptor as DispatchRuleDescriptorv1003 } from '../../typ
 import { DispatchRuleDescriptor as DispatchRuleDescriptorv1004 } from '../../types/generated/v1004'
 import { DispatchRuleDescriptor as DispatchRuleDescriptorv1005 } from '../../types/generated/v1005'
 import { DispatchRuleDescriptor as DispatchRuleDescriptorv1010 } from '../../types/generated/v1010'
+import { DispatchRuleDescriptor as DispatchRuleDescriptorv1011 } from '../../types/generated/v1011'
 
 import {
     MaxFuelBurnPerTransaction,
@@ -32,6 +33,7 @@ export function rulesToMap(
         | DispatchRuleDescriptorv1004[]
         | DispatchRuleDescriptorv1005[]
         | DispatchRuleDescriptorv1010[]
+        | DispatchRuleDescriptorv1011[]
 ) {
     let whitelistedCallers: string[] | undefined
     let whitelistedCollections: string[] | undefined
@@ -95,10 +97,6 @@ export function rulesToMap(
 
 export function getTankDataFromCall(ctx: CommonContext, call: CallItem) {
     if (call.name === 'FuelTanks.dispatch') {
-        if (fuelTanks.dispatch.v1010.is(call)) {
-            return fuelTanks.dispatch.v1010.decode(call)
-        }
-
         if (fuelTanks.dispatch.matrixEnjinV1005.is(call)) {
             return fuelTanks.dispatch.matrixEnjinV1005.decode(call)
         }
@@ -117,6 +115,14 @@ export function getTankDataFromCall(ctx: CommonContext, call: CallItem) {
 
         if (fuelTanks.dispatch.matrixEnjinV603.is(call)) {
             return fuelTanks.dispatch.matrixEnjinV603.decode(call)
+        }
+
+        if (fuelTanks.dispatch.v1011.is(call)) {
+            return fuelTanks.dispatch.v1011.decode(call)
+        }
+
+        if (fuelTanks.dispatch.v1010.is(call)) {
+            return fuelTanks.dispatch.v1010.decode(call)
         }
 
         if (fuelTanks.dispatch.v1005.is(call)) {
@@ -158,10 +164,6 @@ export function getTankDataFromCall(ctx: CommonContext, call: CallItem) {
         throw new UnknownVersionError(fuelTanks.dispatch.name)
     }
 
-    if (fuelTanks.dispatchAndTouch.v1010.is(call)) {
-        return fuelTanks.dispatchAndTouch.v1010.decode(call)
-    }
-
     if (fuelTanks.dispatchAndTouch.matrixEnjinV1005.is(call)) {
         return fuelTanks.dispatchAndTouch.matrixEnjinV1005.decode(call)
     }
@@ -180,6 +182,14 @@ export function getTankDataFromCall(ctx: CommonContext, call: CallItem) {
 
     if (fuelTanks.dispatchAndTouch.matrixEnjinV603.is(call)) {
         return fuelTanks.dispatchAndTouch.matrixEnjinV603.decode(call)
+    }
+
+    if (fuelTanks.dispatchAndTouch.v1011.is(call)) {
+        return fuelTanks.dispatchAndTouch.v1011.decode(call)
+    }
+
+    if (fuelTanks.dispatchAndTouch.v1010.is(call)) {
+        return fuelTanks.dispatchAndTouch.v1010.decode(call)
     }
 
     if (fuelTanks.dispatchAndTouch.v1005.is(call)) {

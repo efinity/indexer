@@ -29,10 +29,6 @@ function getEventData(event: EventItem) {
 
 function getCallData(ctx: CommonContext, call: CallItem) {
     if (call.name === 'FuelTanks.force_create_fuel_tank') {
-        if (calls.fuelTanks.forceCreateFuelTank.v1010.is(call)) {
-            return calls.fuelTanks.forceCreateFuelTank.v1010.decode(call)
-        }
-
         if (calls.fuelTanks.forceCreateFuelTank.matrixEnjinV1005.is(call)) {
             return calls.fuelTanks.forceCreateFuelTank.matrixEnjinV1005.decode(call)
         }
@@ -51,6 +47,14 @@ function getCallData(ctx: CommonContext, call: CallItem) {
 
         if (calls.fuelTanks.forceCreateFuelTank.matrixEnjinV603.is(call)) {
             return calls.fuelTanks.forceCreateFuelTank.matrixEnjinV603.decode(call)
+        }
+
+        if (calls.fuelTanks.forceCreateFuelTank.v1011.is(call)) {
+            return calls.fuelTanks.forceCreateFuelTank.v1011.decode(call)
+        }
+
+        if (calls.fuelTanks.forceCreateFuelTank.v1010.is(call)) {
+            return calls.fuelTanks.forceCreateFuelTank.v1010.decode(call)
         }
 
         if (calls.fuelTanks.forceCreateFuelTank.v1005.is(call)) {
@@ -94,6 +98,10 @@ function getCallData(ctx: CommonContext, call: CallItem) {
 
     if (calls.fuelTanks.createFuelTank.matrixEnjinV603.is(call)) {
         return calls.fuelTanks.createFuelTank.matrixEnjinV603.decode(call)
+    }
+
+    if (calls.fuelTanks.createFuelTank.v1011.is(call)) {
+        return calls.fuelTanks.createFuelTank.v1011.decode(call)
     }
 
     if (calls.fuelTanks.createFuelTank.v1010.is(call)) {

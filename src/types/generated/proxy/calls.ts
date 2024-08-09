@@ -1,5 +1,6 @@
 import {sts, Block, Bytes, Option, Result, CallType, RuntimeCtx} from '../support'
 import * as v1010 from '../v1010'
+import * as v1011 from '../v1011'
 
 export const proxy =  {
     name: 'Proxy.proxy',
@@ -20,6 +21,25 @@ export const proxy =  {
             real: v1010.MultiAddress,
             forceProxyType: sts.option(() => v1010.ProxyType),
             call: v1010.Call,
+        })
+    ),
+    /**
+     * Dispatch the given `call` from an account that the sender is authorised for through
+     * `add_proxy`.
+     * 
+     * The dispatch origin for this call must be _Signed_.
+     * 
+     * Parameters:
+     * - `real`: The account that the proxy will make a call on behalf of.
+     * - `force_proxy_type`: Specify the exact proxy type to be used and checked for this call.
+     * - `call`: The call to be made by the `real` account.
+     */
+    v1011: new CallType(
+        'Proxy.proxy',
+        sts.struct({
+            real: v1011.MultiAddress,
+            forceProxyType: sts.option(() => v1011.ProxyType),
+            call: v1011.Call,
         })
     ),
 }
@@ -244,6 +264,28 @@ export const proxyAnnounced =  {
             real: v1010.MultiAddress,
             forceProxyType: sts.option(() => v1010.ProxyType),
             call: v1010.Call,
+        })
+    ),
+    /**
+     * Dispatch the given `call` from an account that the sender is authorized for through
+     * `add_proxy`.
+     * 
+     * Removes any corresponding announcement(s).
+     * 
+     * The dispatch origin for this call must be _Signed_.
+     * 
+     * Parameters:
+     * - `real`: The account that the proxy will make a call on behalf of.
+     * - `force_proxy_type`: Specify the exact proxy type to be used and checked for this call.
+     * - `call`: The call to be made by the `real` account.
+     */
+    v1011: new CallType(
+        'Proxy.proxy_announced',
+        sts.struct({
+            delegate: v1011.MultiAddress,
+            real: v1011.MultiAddress,
+            forceProxyType: sts.option(() => v1011.ProxyType),
+            call: v1011.Call,
         })
     ),
 }

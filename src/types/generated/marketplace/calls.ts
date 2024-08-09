@@ -2,6 +2,7 @@ import {sts, Block, Bytes, Option, Result, CallType, RuntimeCtx} from '../suppor
 import * as matrixEnjinV603 from '../matrixEnjinV603'
 import * as matrixEnjinV1005 from '../matrixEnjinV1005'
 import * as v1010 from '../v1010'
+import * as v1011 from '../v1011'
 
 export const createListing =  {
     name: 'Marketplace.create_listing',
@@ -305,6 +306,24 @@ export const placeCounterOffer =  {
             price: sts.bigint(),
         })
     ),
+    /**
+     * Places a counter offer on a listing. The listing must be an offer. The caller must own
+     * the token that the offer is requesting. The counter offer can only be updated by calling
+     * [`Self::answer_counter_offer`].
+     * 
+     * ### Parameters
+     * - `listing_id` - the id of the offer that will be countered
+     * - `price` - the price for the counter offer. It must be higher than the offer price.
+     * - `depositor` - must be set to `None`. It is only usable internally by fuel tanks.
+     */
+    v1011: new CallType(
+        'Marketplace.place_counter_offer',
+        sts.struct({
+            listingId: v1011.H256,
+            price: sts.bigint(),
+            depositor: sts.option(() => v1011.MultiAddress),
+        })
+    ),
 }
 
 export const answerCounterOffer =  {
@@ -321,6 +340,27 @@ export const answerCounterOffer =  {
             accept: sts.boolean(),
         })
     ),
+    /**
+     * Responds to a counter offer on a listing.
+     * If the counter offer is accepted, the listing will be filled. If it's rejected, the
+     * counter offer is deleted. It can also be updated with a `Counter` response. Only the
+     * buyer and seller may call this extrinsic.
+     * 
+     * ### Parameters
+     * - `listing_id` - the id of the offer that will be countered
+     * - `creator` - the account that created the counter offer (the seller)
+     * - `response` - whether the counter is accepted, rejected, or countered
+     * - `current_price` - must match the price being countered
+     */
+    v1011: new CallType(
+        'Marketplace.answer_counter_offer',
+        sts.struct({
+            listingId: v1011.H256,
+            creator: v1011.AccountId32,
+            response: v1011.CounterOfferResponse,
+            currentPrice: sts.bigint(),
+        })
+    ),
 }
 
 export const removeExpiredListing =  {
@@ -332,6 +372,19 @@ export const removeExpiredListing =  {
         'Marketplace.remove_expired_listing',
         sts.struct({
             listingId: v1010.H256,
+        })
+    ),
+}
+
+export const forceCancelListing =  {
+    name: 'Marketplace.force_cancel_listing',
+    /**
+     * Force cancel a listing. This is only callable by the [`Config::ForceOrigin`].
+     */
+    v1011: new CallType(
+        'Marketplace.force_cancel_listing',
+        sts.struct({
+            listingId: v1011.H256,
         })
     ),
 }
