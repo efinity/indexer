@@ -19,7 +19,7 @@
     "@bull-board/api": "^5.21.4",
     "@bull-board/express": "^5.21.4",
     "@polkadot/api": "^12.4.2",
-    "@polkadot/keyring": "^13.0.2",
+    "@polkadot/keyring": "^13.1.1",
     "@polkadot/types": "^12.0.1",
     "@polkadot/util": "^13.0.2",
     "@polkadot/util-crypto": "^13.0.2",
