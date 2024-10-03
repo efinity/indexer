@@ -53,7 +53,7 @@
     "@subsquid/substrate-typegen": "^8.0.2",
     "@subsquid/typeorm-codegen": "^2.0.2",
     "@types/express": "^4.17.21",
-    "@types/lodash": "^4.17.7",
+    "@types/lodash": "^4.17.10",
     "@types/mime-types": "^2.1.4",
     "@types/node": "^20.11.16",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
